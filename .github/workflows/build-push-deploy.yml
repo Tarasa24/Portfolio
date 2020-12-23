@@ -11,6 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -38,6 +46,8 @@ jobs:
           context: ./web-frontend
           file: ./web-frontend/Dockerfile
           platforms: linux/amd64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Check for diff in web-backend
         id: backend-diff
@@ -54,6 +64,8 @@ jobs:
           context: ./web-backend
           file: ./web-backend/Dockerfile
           platforms: linux/amd64
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
   deploy:
     needs: build-push
     runs-on: ubuntu-latest

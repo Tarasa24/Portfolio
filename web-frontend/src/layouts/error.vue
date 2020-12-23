@@ -23,12 +23,11 @@ export default {
   head() {
     const i18nSeo = this.$nuxtI18nSeo()
     return {
+      title: `Error ${this.error.statusCode}`,
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Full-Stack developer, Student and Tech geek',
+          charset: 'UTF-8'
         },
         {
           hid: 'viewport',

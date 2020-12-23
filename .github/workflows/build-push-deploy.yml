@@ -1,0 +1,61 @@
+name: Build, Push and Deploy
+
+on:
+  push:
+    branches: [master]
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: tarasa24
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+      - name: Check for diff in web-frontend
+        id: frontend-diff
+        uses: technote-space/get-diff-action@v4
+        with:
+          PATTERNS: web-frontend/**
+        
+      - name: Build and push web-frontend image
+        if: steps.frontend-diff.outputs.diff
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: tarasa24/web-frontend
+          context: web-frontend
+
+      - name: Check for diff in web-backend
+        id: backend-diff
+        uses: technote-space/get-diff-action@v4
+        with:
+          PATTERNS: web-backend/**
+        
+      - name: Build and push web-backend image
+        if: steps.backend-diff.outputs.diff
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: tarasa24/web-backend
+          context: web-backend
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rollout restart
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: rollout restart deployment -n web web-deployment
+
+      - name: Verify deployment
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: rollout status deployment -n web web-deployment

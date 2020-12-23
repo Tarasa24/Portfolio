@@ -3,7 +3,7 @@
     <button @click="toTop()" aria-label="Take to the top">
       <fa :icon="['fas', 'angle-double-up']" />
     </button>
-    <span>Petr "<b>Tarasa24</b>" Gajdošík &copy;2020</span>
+    <span>Petr <b>Tarasa24</b> Gajdošík &copy;2020</span>
   </footer>
 </template>
 

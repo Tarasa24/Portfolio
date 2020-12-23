@@ -3,8 +3,8 @@ name: Build, Push and Deploy
 on:
   push:
     branches: [master]
-    paths:
-      - '!.github/**'
+    paths-ignore:
+      - '.github/**'
 jobs:
   build-push:
     runs-on: ubuntu-latest

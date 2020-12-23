@@ -35,7 +35,9 @@ jobs:
         with:
           push: true
           tags: tarasa24/web-frontend
-          context: web-frontend
+          context: ./web-frontend
+          file: ./web-frontend/Dockerfile
+          platforms: linux/amd64
 
       - name: Check for diff in web-backend
         id: backend-diff
@@ -49,7 +51,9 @@ jobs:
         with:
           push: true
           tags: tarasa24/web-backend
-          context: web-backend
+          context: ./web-backend
+          file: ./web-backend/Dockerfile
+          platforms: linux/amd64
   deploy:
     needs: build-push
     runs-on: ubuntu-latest

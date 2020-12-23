@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "description": "Software Developer, Student, Tech Enthusiast, Tarasa24 • &#9749; \"An organism capable of converting caffeine into code\" "
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "login": "Login",
+    "logout": "Logout",
+    "home": "Home"
+  },
+  "about": {
+    "h": "About",
+    "text": "Hi! My name is Petr Gajdosik and on the waves of Internet I'm known as Tarasa24. I'm a software developer looking for an opportunity to grow my skill set.",
+    "technical_skills": {
+      "h": "Technical Skills"
+    },
+    "education": {
+      "h": "Education",
+      "1": "Palacky University in Olomouc; IT department (accepted for)",
+      "2": "3+ years of self-education"
+    },
+    "languages": {
+      "h": "Languages",
+      "1": "English",
+      "2": "Czech",
+      "3": "German"
+    },
+    "resume": "Want to know more? Take a look at the resume (pdf)."
+  },
+  "projects": {
+    "h": "Projects"
+  },
+  "contact": {
+    "h": "Contact",
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Your message",
+    "send": "Send",
+    "error": "Something went wrong",
+    "sent": "Sent",
+    "availability": "Availability",
+    "available": "Open for commissions"
+  },
+  "login": {
+    "h1": "Log in to continue",
+    "login": "Log in with GitHub"
+  },
+  "notice": {
+    "copied": "Discord handle has been copied"
+  },
+  "error": {
+    "404": "Page not found",
+    "err": "An error has ocured",
+    "home": "Home"
+  }
+}

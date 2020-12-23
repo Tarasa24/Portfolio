@@ -1,0 +1,4 @@
+src/dist
+src/.nuxt
+src/node_modules
+src/package-lock.json

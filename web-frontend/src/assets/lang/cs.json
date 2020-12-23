@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "description": "Softwarový vývojař, Student, Tech Enthusiast, Tarasa24' • &#9749; \"Organismus schopný přeměny kofeinu na kód\" "
+  },
+  "nav": {
+    "about": "O mně",
+    "projects": "Projekty",
+    "contact": "Kontakt",
+    "login": "Přihlásit se",
+    "logout": "Odhlásit se",
+    "home": "Domů"
+  },
+  "about": {
+    "h": "O mně",
+    "text": "Jmenuji se Petr Gajdošík a na internetu vystupuji pod přezdívkou Tarasa24. Jsem softwarový vývojář, hledající příležitost rozšířit své dovednosti.",
+    "technical_skills": {
+      "h": "Technické znalosti"
+    },
+    "education": {
+      "h": "Vzdělání",
+      "1": "Univerzita Palackého v Olomouci; katedra informatiky (přijat)",
+      "2": "3+ let samovzdělání"
+    },
+    "languages": {
+      "h": "Jazyky",
+      "1": "Čeština",
+      "2": "Angličtina",
+      "3": "Němčina"
+    },
+    "resume": "Chcete vědět více? Podívejte se na životopis (pdf)."
+  },
+  "projects": {
+    "h": "Projekty"
+  },
+  "contact": {
+    "h": "Kontakt",
+    "name": "Vaše jméno",
+    "email": "Váš email",
+    "message": "Vaše zpráva",
+    "send": "Odeslat",
+    "error": "Něco se pokazilo",
+    "sent": "Odesláno",
+    "availability": "Dostupnost",
+    "available": "Přijímám nové projekty"
+  },
+  "login": {
+    "h1": "Prosím přihlašte se",
+    "login": "Přihlásit se přes GitHub"
+  },
+  "notice": {
+    "copied": "Discord handle byl zkopírován"
+  },
+  "error": {
+    "404": "Stránka nenalezena",
+    "err": "Vyskytla se chyba",
+    "home": "Domů"
+  }
+}

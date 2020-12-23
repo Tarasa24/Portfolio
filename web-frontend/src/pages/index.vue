@@ -46,7 +46,7 @@
           <li>MongoDB, MySQL</li>
           <li>Nginx</li>
           <li>Docker, Kubernetes</li>
-          <li>Git, CI</li>
+          <li>Git, CI/CD</li>
           <li>Linux based server management</li>
         </ul>
         <b>{{ $t('about.education.h') }}:</b>

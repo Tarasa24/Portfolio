@@ -37,9 +37,9 @@ async function contact(req, res) {
   const mail = {
     from: `${name} <${email}>`,
     to: 'tarasa24@tarasa24.dev',
-    subject: `✉️ [tarasa24.dev] ${lang == 'cs'
-      ? 'Zpráva od'
-      : 'Message from'} ${name}`,
+    subject: `✉️ [tarasa24.dev] ${
+      lang == 'cs' ? 'Zpráva od' : 'Message from'
+    } ${name}`,
     text: text,
   }
 

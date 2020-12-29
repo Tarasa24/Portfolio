@@ -50,6 +50,7 @@ export default {
         },
       },
     ],
+    ['@nuxtjs/google-gtag', { id: 'UA-164343382-1' }],
   ],
   build: {},
   styleResources: {

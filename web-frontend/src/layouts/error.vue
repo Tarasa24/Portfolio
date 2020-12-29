@@ -27,7 +27,7 @@ export default {
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          charset: 'UTF-8'
+          charset: 'UTF-8',
         },
         {
           hid: 'viewport',

@@ -27,7 +27,7 @@ export default {
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          charset: 'UTF-8'
+          charset: 'UTF-8',
         },
         {
           hid: 'description',
@@ -41,7 +41,8 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://avatars0.githubusercontent.com/u/20138731?s=460&u=1866fe357bd941ea017959bc14297565d1d23483&v=4'
+          content:
+            'https://avatars0.githubusercontent.com/u/20138731?s=460&u=1866fe357bd941ea017959bc14297565d1d23483&v=4',
         },
         ...i18nSeo.meta,
       ],
@@ -55,8 +56,6 @@ export default {
     this.loaded = false
     await sleep(500)
     this.loaded = true
-
-    console.log(this.$t('seo.description'));
   },
 }
 </script>

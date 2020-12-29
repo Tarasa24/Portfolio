@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY src/package.json /usr/src/app/package.json
-RUN npm install
+RUN npm install --production
 RUN npm audit fix
 
 COPY src /usr/src/app

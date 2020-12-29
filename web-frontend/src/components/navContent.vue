@@ -44,6 +44,7 @@
       <a href="https://hangfire.tarasa24.dev">Hangfire</a>
       <a href="https://phpmyadmin.tarasa24.dev">phpMyAdmin</a>
       <a href="https://kubernetes-dashboard.tarasa24.dev">K8s Dashboard</a>
+      <a href="https://netdata.tarasa24.dev/host/UbuntuServer/">Netdata</a>
     </span>
   </section>
 </template>

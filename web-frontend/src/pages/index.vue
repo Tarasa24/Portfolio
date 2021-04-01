@@ -106,7 +106,7 @@
                   <fa :icon="['fas', 'star']" />
                   {{ project.stars }}
                 </span>
-                <span v-if="project.downloads !== -1">
+                <span v-if="project.downloads">
                   <a
                     :href="project.url + '/releases'"
                     target="_blank"

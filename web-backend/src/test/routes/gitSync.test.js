@@ -8,14 +8,14 @@ describe('Test pinned github projects fetching', () => {
       id: 'MDEwOlJlcG9zaXRvcnkzMDc4MjYwNDk=',
       title: 'SCS_RPC2',
       description: 'Discord Rich Presence plugin for ETS2 and ATS',
-      stars: 2,
+      stars: 7,
       homepageUrl: null,
       url: 'https://github.com/Tarasa24/SCS_RPC2',
-      language: 'C++',
-      languageCol: '#f34b7d',
+      lang: 'C++',
+      langColor: '#f34b7d',
       license: 'MIT License',
       licenseUrl: 'http://choosealicense.com/licenses/mit/',
-      downloads: 28,
+      downloads: 83,
       img:
         'https://cdn.discordapp.com/app-assets/529016610137309184/529052463643230211.png',
     },
@@ -27,11 +27,11 @@ describe('Test pinned github projects fetching', () => {
       stars: 0,
       homepageUrl: null,
       url: 'https://github.com/Tarasa24/FromReddit',
-      language: 'Python',
-      languageCol: '#3572A5',
+      lang: 'Python',
+      langColor: '#3572A5',
       license: null,
       licenseUrl: null,
-      downloads: 28,
+      downloads: 11,
       img: 'https://i.imgur.com/s4eR1Vn.png',
     },
     {
@@ -41,11 +41,11 @@ describe('Test pinned github projects fetching', () => {
       stars: 0,
       homepageUrl: 'https://tarasa24.dev',
       url: 'https://github.com/Tarasa24/Portfolio',
-      language: 'Vue',
-      languageCol: '#2c3e50',
+      lang: 'Vue',
+      langColor: '#2c3e50',
       license: null,
       licenseUrl: null,
-      downloads: -1,
+      downloads: null,
       img: 'https://i.imgur.com/KBzZRUh.png',
     },
   ]
@@ -53,7 +53,7 @@ describe('Test pinned github projects fetching', () => {
   beforeAll(async () => {
     // Shuffle array to ensure data is properly sorted in the next test
     let copy = [].concat(data)
-    copy.sort(function () {
+    copy.sort(() => {
       return 0.5 - Math.random()
     })
 

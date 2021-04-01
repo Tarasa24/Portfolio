@@ -12,7 +12,7 @@ else if (process.env.NODE_ENV === 'test')
 else
   db = new Sequelize({
     dialect: 'sqlite',
-    storage: './mock-data.sqlite',
+    storage: './sqlite.db',
   })
 
 module.exports = {

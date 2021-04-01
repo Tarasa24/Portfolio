@@ -131,9 +131,9 @@
                 <span>
                   <fa
                     :icon="['fas', 'circle']"
-                    :style="{ color: project.languageCol }"
+                    :style="{ color: project.langColor }"
                   />
-                  {{ project.language }}
+                  {{ project.lang }}
                 </span>
               </div>
             </section>

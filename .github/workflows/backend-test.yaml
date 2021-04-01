@@ -1,4 +1,4 @@
-name: Test backend
+name: Test Backend
 
 on:
   pull_request:
@@ -31,7 +31,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
       - run: npm ci
 
       - name: Test code with Jest

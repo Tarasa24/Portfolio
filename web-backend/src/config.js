@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize')
 let db
 if (process.env.NODE_ENV === 'production')
   db = new Sequelize('web', process.env.mysqlUser, process.env.mysqlPass, {
-    host: 'mysql-slave.mysql.svc.cluster.local',
+    host: 'mysql.mysql.svc.cluster.local',
     dialect: 'mysql',
     logging: false,
   })

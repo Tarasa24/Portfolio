@@ -53,7 +53,7 @@ describe('Test pinned github projects fetching', () => {
   beforeAll(async () => {
     // Shuffle array to ensure data is properly sorted in the next test
     let copy = [].concat(data)
-    copy.sort(function() {
+    copy.sort(() => {
       return 0.5 - Math.random()
     })
 

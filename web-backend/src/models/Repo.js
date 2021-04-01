@@ -2,48 +2,26 @@ const { DataTypes } = require('sequelize')
 const { db } = require('../config')
 
 const Repo = db.define(
-  'Repos',
+  'Repo',
   {
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    title: {
-      type: DataTypes.STRING,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    stars: {
-      type: DataTypes.INTEGER,
-    },
-    homepageUrl: {
-      type: DataTypes.STRING,
-    },
-    url: {
-      type: DataTypes.STRING,
-    },
-    language: {
-      type: DataTypes.STRING,
-    },
-    languageCol: {
-      type: DataTypes.STRING,
-    },
-    license: {
-      type: DataTypes.STRING,
-    },
-    licenseUrl: {
-      type: DataTypes.STRING,
-    },
-    downloads: {
-      type: DataTypes.INTEGER,
-    },
-    img: {
-      type: DataTypes.STRING,
-    },
+    title: DataTypes.STRING,
+    description: DataTypes.STRING,
+    stars: DataTypes.INTEGER,
+    homepageUrl: DataTypes.STRING,
+    url: DataTypes.STRING,
+    lang: DataTypes.STRING,
+    langColor: DataTypes.STRING,
+    license: DataTypes.STRING,
+    licenseUrl: DataTypes.STRING,
+    downloads: DataTypes.INTEGER,
+    img: DataTypes.STRING,
   },
   {
-    tableName: 'repos',
+    tableName: 'Repo',
     timestamps: false,
   }
 )

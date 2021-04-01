@@ -1,45 +1,13 @@
-name: Test, Build, Push and Deploy Backend
+name: Build, Push and Deploy Frontend
 
 on:
   workflow_dispatch:
   push:
     branches: [master]
     paths:
-      - 'web-backend/**'
+      - 'web-frontend/**'
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: web-backend/src/
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: node-modules-backend-cache
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('web-backend/src/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - run: npm ci
-
-      - name: Test code with Jest
-        run: npm run test:jest
-
-      - name: Check formatting with prettier
-        run: npm run test:prettier
   build-push:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -68,9 +36,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/tarasa24/portfolio-backend:latest
-          context: ./web-backend
-          file: ./web-backend/Dockerfile
+          tags: ghcr.io/tarasa24/portfolio-frontend:latest
+          context: ./web-frontend
+          file: ./web-frontend/Dockerfile
           platforms: linux/amd64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

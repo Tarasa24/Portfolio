@@ -4,7 +4,7 @@ const Repo = require('./models/Repo')
 async function main() {
   // Sync all models
   await Repo.sync()
-  console.log("All models were synchronized successfully.");
+  console.log('All models were synchronized successfully.')
 
   // Run http server
   const port = 8081

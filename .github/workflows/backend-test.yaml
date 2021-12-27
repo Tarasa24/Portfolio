@@ -2,7 +2,7 @@ name: Test Backend
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths:
       - 'web-backend/src/**'
 
@@ -32,7 +32,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - run: npm ci
-
       - name: Test code with Jest
         run: npm run test:jest
 

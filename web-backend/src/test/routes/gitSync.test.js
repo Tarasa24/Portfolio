@@ -16,8 +16,7 @@ describe('Test pinned github projects fetching', () => {
       license: 'MIT License',
       licenseUrl: 'http://choosealicense.com/licenses/mit/',
       downloads: 83,
-      img:
-        'https://cdn.discordapp.com/app-assets/529016610137309184/529052463643230211.png',
+      img: 'https://cdn.discordapp.com/app-assets/529016610137309184/529052463643230211.png',
     },
     {
       id: 'MDEwOlJlcG9zaXRvcnkyMTk2MDYwOTU=',

@@ -1,13 +1,28 @@
-FROM node:14.15.0
-RUN mkdir /usr/src/app
+# Build
+FROM node:14.15.0-alpine AS BUILD_IMAGE
+
+RUN apk update && apk add yarn curl bash python g++ make && rm -rf /var/cache/apk/*
+
+RUN curl -sfL https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
 WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY src/package.json src/yarn.lock ./
 
-COPY src/package.json /usr/src/app/package.json
-RUN npm install --production
-RUN npm audit fix
+RUN yarn --frozen-lockfile
 
-COPY src /usr/src/app
-RUN npm run generate
+COPY src .
 
-CMD [ "npm", "run", "start" ]
+RUN yarn build && yarn generate
+RUN npm prune --production
+RUN /usr/local/bin/node-prune
+
+# Execute
+FROM node:14.15.0-alpine
+WORKDIR /usr/src/app
+
+COPY --from=BUILD_IMAGE /usr/src/app/dist ./dist
+COPY --from=BUILD_IMAGE /usr/src/app/.nuxt ./.nuxt
+COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
+
+EXPOSE 8080
+
+CMD [ "node_modules/nuxt/bin/nuxt.js", "start" ]

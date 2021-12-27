@@ -10,12 +10,12 @@ async function contact(req, res) {
   let transporter
   if (process.env.NODE_ENV === 'production')
     transporter = nodemailer.createTransport({
-      host: 'mailserver.mailserver.svc.cluster.local',
+      host: process.env.mailHost,
       port: 465,
       secure: true,
       auth: {
-        user: 'tarasa24@tarasa24.dev',
-        pass: process.env.emailPass,
+        user: process.env.mailUser,
+        pass: process.env.mailPass,
       },
       tls: {
         servername: 'mail.tarasa24.dev',
@@ -36,7 +36,7 @@ async function contact(req, res) {
 
   const mail = {
     from: `${name} <${email}>`,
-    to: 'tarasa24@tarasa24.dev',
+    to: process.env.mailUser,
     subject: `✉️ [tarasa24.dev] ${
       lang == 'cs' ? 'Zpráva od' : 'Message from'
     } ${name}`,

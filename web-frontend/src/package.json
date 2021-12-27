@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node node_modules/nuxt/bin/nuxt.js",
+    "build": "node node_modules/nuxt/bin/nuxt.js build",
     "generate": "node --max-old-space-size=3072 node_modules/nuxt/bin/nuxt.js generate",
     "start": "node node_modules/nuxt/bin/nuxt.js start"
   },

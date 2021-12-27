@@ -2,8 +2,8 @@ const { Sequelize } = require('sequelize')
 
 let db
 if (process.env.NODE_ENV === 'production')
-  db = new Sequelize('web', process.env.mysqlUser, process.env.mysqlPass, {
-    host: 'mysql.mysql.svc.cluster.local',
+  db = new Sequelize('web', process.env.dbUser, process.env.dbPass, {
+    host: process.env.dbHost,
     dialect: 'mysql',
     logging: false,
   })

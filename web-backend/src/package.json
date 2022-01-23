@@ -15,15 +15,12 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mysql2": "^2.2.5",
-    "nodemailer": "^6.4.16",
-    "sequelize": "^6.3.5"
+    "nodemailer": "^6.4.16"
   },
   "devDependencies": {
     "axios": "^0.21.1",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "sqlite3": "^5.0.0",
     "supertest": "^6.0.1"
   }
 }

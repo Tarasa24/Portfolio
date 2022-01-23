@@ -22,9 +22,6 @@ COPY --from=BUILD_IMAGE /usr/src/app/ .
 
 EXPOSE 8081
 ENV NODE_ENV="production"
-ENV dbUser=
-ENV dbPass=
-ENV dbHost=
 ENV mailUser=
 ENV mailPass=
 ENV mailHost=

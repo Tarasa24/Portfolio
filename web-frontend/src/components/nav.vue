@@ -1,12 +1,11 @@
 <template>
   <nav class="desktop" v-if="width > 767" v-bind:class="{ right: menuBlock }">
-    <navContent v-bind:class="{ block: menuBlock }" :authorized="authorized" />
+    <navContent v-bind:class="{ block: menuBlock }" />
   </nav>
   <nav class="mobile" v-else>
     <button @click="openMenu"><fa :icon="['fas', 'bars']" /></button>
     <navContent
       :class="{ opened: menuOpened, closed: !menuOpened }"
-      :authorized="authorized"
     />
   </nav>
 </template>
@@ -78,30 +77,7 @@ export default {
       }
     },
   },
-  fetchOnServer: false,
-  async fetch() {
-    const authHost =
-      process.env.NODE_ENV == 'production'
-        ? 'https://oauth.tarasa24.dev'
-        : 'http://localhost:300'
-    const res = await fetch(authHost + '/auth', {
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'include',
-    })
-
-    switch (res.status) {
-      case 200:
-        this.authorized = true
-        break
-      case 401:
-        this.authorized = false
-        break
-      default:
-        this.authorized = false
-        break
-    }
-  },
+  fetchOnServer: false
 }
 </script>
 

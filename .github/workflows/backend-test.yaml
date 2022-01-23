@@ -19,21 +19,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-
+          cache: 'yarn'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: Cache node modules
         uses: actions/cache@v2
-        env:
-          cache-name: node-modules-backend-cache
+        id: yarn-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('web-backend/src/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('web-backend/src/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - run: npm ci
+            ${{ runner.os }}-yarn-
+      - name: Yarn install
+        working-directory: ./web-backend/src/
+        run: yarn install
       - name: Test code with Jest
-        run: npm run test:jest
+        run: yarn test:jest
 
       - name: Check formatting with prettier
-        run: npm run test:prettier
+        run: yarn test:prettier

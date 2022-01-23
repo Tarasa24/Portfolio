@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Softwarový vývojař, Student, Tech Enthusiast, Tarasa24' • &#9749; \"Organismus schopný přeměny kofeinu na kód\" "
+    "description": "Softwarový vývojař | &#9749; \"Organismus schopný přeměny kofeinu na kód\" "
   },
   "nav": {
     "about": "O mně",
@@ -12,25 +12,15 @@
   },
   "about": {
     "h": "O mně",
-    "text": "Jmenuji se Petr Gajdošík a na internetu vystupuji pod přezdívkou Tarasa24. Jsem softwarový vývojář, hledající příležitost rozšířit své dovednosti.",
-    "technical_skills": {
-      "h": "Technické znalosti"
-    },
-    "education": {
-      "h": "Vzdělání",
-      "1": "Univerzita Palackého v Olomouci; katedra informatiky (přijat)",
-      "2": "3+ let samovzdělání"
-    },
-    "languages": {
-      "h": "Jazyky",
-      "1": "Čeština",
-      "2": "Angličtina",
-      "3": "Němčina"
-    },
-    "resume": "Chcete vědět více? Podívejte se na životopis (pdf)."
+    "resume": "Chcete vidět více? Podívejte se na mé CV."
   },
   "projects": {
-    "h": "Projekty"
+    "h": "Projekty",
+    "links": {
+      "repository": "Repository",
+      "website": "Web",
+      "readme": "README.cz.md"
+    }
   },
   "contact": {
     "h": "Kontakt",
@@ -41,11 +31,8 @@
     "error": "Něco se pokazilo",
     "sent": "Odesláno",
     "availability": "Dostupnost",
-    "available": "Přijímám nové projekty"
-  },
-  "login": {
-    "h1": "Prosím přihlašte se",
-    "login": "Přihlásit se přes GitHub"
+    "available": "Přijímám nové projekty",
+    "not_available": "Nepřijímám nové projekty"
   },
   "notice": {
     "copied": "Discord handle byl zkopírován"
@@ -54,5 +41,8 @@
     "404": "Stránka nenalezena",
     "err": "Vyskytla se chyba",
     "home": "Domů"
+  },
+  "readme": {
+    "404": "README není k dispozici. Zkuste stránku přepnout do jiného jazyka, nebo místo toho navšitvte repository."
   }
 }

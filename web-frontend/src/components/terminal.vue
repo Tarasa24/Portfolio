@@ -2,42 +2,46 @@
   <div class="blurred">
     <div id="terminal1">
       <span> root@tarasa24.dev:$ </span>
-      <span class="textfield">{{
-        this.$i18n.locale === 'cs'
-          ? 'echo Softwarový vývojář'
-          : 'echo a Software Developer'
-      }}</span>
+      <span class="textfield">{{'echo ' + this.textArr[0] }}</span>
       <span class="caret">_</span>
     </div>
     <div id="terminal2">
-      <span> root@tarasa24.dev:$ </span>
+      <span> root@tarasa24-dev:$ </span>
       <span class="textfield"></span>
       <span class="caret">_</span>
     </div>
     <div class="iam">
       <span>{{
         this.$i18n.locale === 'cs'
-          ? 'Jsem Softwarový vývojář'
-          : 'I am a Software Developer'
+          ? 'Jsem ' + this.textArr[0] 
+          : 'I am ' + this.textArr[0] 
       }}</span>
+      <span>_</span>
     </div>
   </div>
 </template>
 
 <script>
+import fetchCMS from '../assets/js/fetchCMS'
+
 export default {
-  mounted() {
+  async mounted() {
     if (process.browser) this.typing()
+  },
+  data() {
+    return {
+      textArr: []
+    }
+  },
+  async fetch() {
+    this.textArr = await fetchCMS(`/api/homepage?fields=terminalEchos&locale=${this.$i18n.locale}`).then(res => 
+      res.json().then(json => json.data.attributes.terminalEchos))
   },
   methods: {
     async typing() {
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms))
       }
-      const textArr =
-        this.$i18n.locale === 'cs'
-          ? ['Student', 'Tech Enthusiast', 'Tarasa24']
-          : ['a Student', 'a Tech Enthusiast', 'Tarasa24']
 
       const iam = document.querySelector('.iam span')
       const terminal1 = {
@@ -65,8 +69,8 @@ export default {
       await sleep(1000)
 
       // Loop over I am's
-      for (var e = 0; e < textArr.length; e++) {
-        const text = textArr[e]
+      for (var e = 1; e < this.textArr.length; e++) {
+        const text = this.textArr[e]
         for (var i = 0; i < 'echo '.length; i++) {
           terminal1.textfield.innerHTML += 'echo '.charAt(i)
           await sleep(25)
@@ -86,7 +90,7 @@ export default {
         await sleep(1800)
 
         //Last element check
-        if (e === textArr.length - 1) {
+        if (e === this.textArr.length - 1) {
           break
         }
 
@@ -111,6 +115,12 @@ export default {
 <style lang="sass" scoped>
 .blurred
   padding-top: 5px
+  .caret
+    display: inline-block
+    color: white
+    animation: vimCaret 1s linear infinite
+    color: transparent
+
 #terminal1, #terminal2
   white-space: nowrap
   overflow: hidden
@@ -139,6 +149,8 @@ export default {
     visibility: hidden
 
 .iam
+  display: flex;
+  justify-content: center
   text-align: center
   color: white
   font-family: monospace
@@ -146,6 +158,9 @@ export default {
   margin-top: 200px
   @include small-device
     font-size: 2rem
+  span
+    &:nth-of-type(2)
+      color: #343434
 
 @keyframes vimCaret
   0%, 50%

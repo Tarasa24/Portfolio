@@ -4,4 +4,4 @@ Disallow:
 User-agent: *
 crawl-delay: 10
 Disallow: /api/
-Disallow: /login
+Disallow: /cms/

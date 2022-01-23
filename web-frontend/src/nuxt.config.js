@@ -3,7 +3,7 @@ export default {
     host: '0.0.0.0',
     port: 8080,
   },
-  target: 'static',
+  target: 'server',
   css: ['~assets/sass/global.sass'],
   components: true,
   buildModules: [],

@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div class="topBorder" />
     <Top />
     <div>
       <h1>
@@ -50,12 +51,18 @@ main
   align-items: center
   justify-items: center¨
 
-svg
-  width: 100%
-  height: auto
-  border-top: 45px solid $bg-color
-  position: fixed
+.topBorder
+  position: absolute
   top: 0
+  width: 100%
+  height: 45px
+  background-color: $bg-color
+
+svg
+  position: absolute
+  top: 45px
+  height: auto
+  width: 100%
 
 div
   width: max-content

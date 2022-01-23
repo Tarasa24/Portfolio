@@ -26,5 +26,7 @@ COPY --from=BUILD_IMAGE /usr/src/app/assets/lang ./assets/lang
 COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
 
 EXPOSE 8080
+ENV NODE_ENV=production
+ENV STRAPI_HOST=web_cms
 
 CMD [ "node_modules/nuxt/bin/nuxt.js", "start" ]

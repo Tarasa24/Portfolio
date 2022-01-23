@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Software Developer, Student, Tech Enthusiast, Tarasa24 • &#9749; \"An organism capable of converting caffeine into code\" "
+    "description": "Software Developer | &#9749; \"An organism capable of converting caffeine into code\" "
   },
   "nav": {
     "about": "About",
@@ -12,25 +12,15 @@
   },
   "about": {
     "h": "About",
-    "text": "Hi! My name is Petr Gajdosik and on the waves of Internet I'm known as Tarasa24. I'm a software developer looking for an opportunity to grow my skill set.",
-    "technical_skills": {
-      "h": "Technical Skills"
-    },
-    "education": {
-      "h": "Education",
-      "1": "Palacky University in Olomouc; IT department (accepted for)",
-      "2": "3+ years of self-education"
-    },
-    "languages": {
-      "h": "Languages",
-      "1": "English",
-      "2": "Czech",
-      "3": "German"
-    },
-    "resume": "Want to know more? Take a look at the resume (pdf)."
+    "resume": "Want to see more? Take a look at my resume below."
   },
   "projects": {
-    "h": "Projects"
+    "h": "Projects",
+    "links": {
+      "repository": "Repository",
+      "website": "Website",
+      "readme": "README.en.md"
+    }
   },
   "contact": {
     "h": "Contact",
@@ -41,11 +31,8 @@
     "error": "Something went wrong",
     "sent": "Sent",
     "availability": "Availability",
-    "available": "Open for commissions"
-  },
-  "login": {
-    "h1": "Log in to continue",
-    "login": "Log in with GitHub"
+    "available": "Open for commissions",
+    "not_available": "Currently not accepting new commissions"
   },
   "notice": {
     "copied": "Discord handle has been copied"
@@ -54,5 +41,8 @@
     "404": "Page not found",
     "err": "An error has ocured",
     "home": "Home"
+  },
+  "readme": {
+    "404": "README isn't available. Try switching the website to different language or check out the repository instead."
   }
 }

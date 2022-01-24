@@ -35,7 +35,11 @@ async function contact(req, res) {
   }
 
   const mail = {
-    from: `${name} <${email}>`,
+    from:
+      process.env.NODE_ENV === 'test'
+        ? 'tarasa24@tarasa24.dev'
+        : process.env.mailUser,
+    replyTo: `${name} <${email}>`,
     to:
       process.env.NODE_ENV === 'test'
         ? 'tarasa24@tarasa24.dev'

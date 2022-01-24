@@ -19,10 +19,7 @@ RUN /usr/local/bin/node-prune
 FROM node:14.15.0-alpine
 WORKDIR /usr/src/app
 
-COPY --from=BUILD_IMAGE /usr/src/app/.nuxt ./.nuxt
-COPY --from=BUILD_IMAGE /usr/src/app/nuxt.config.js ./nuxt.config.js
-COPY --from=BUILD_IMAGE /usr/src/app/assets/lang ./assets/lang
-COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
+COPY --from=BUILD_IMAGE /usr/src/app/ .
 
 EXPOSE 8080
 ENV NODE_ENV=production

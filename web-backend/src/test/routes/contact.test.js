@@ -49,11 +49,12 @@ describe('Test correct input', () => {
   })
   test('It should return correct email body fethced from Ethereal fake SMTP', async () => {
     const etherealResponse = await axios(response.text + '/message.eml')
+    console.log(etherealResponse.data);
     expect(
       [
-        `Return-Path: <${mail.email}>`,
-        `From: ${mail.name} <${mail.email}>`,
+        `From: tarasa24@tarasa24.dev`,
         `To: tarasa24@tarasa24.dev`,
+        `Reply-To: ${mail.name} <${mail.email}>`,
         mail.text,
       ].every((i) => etherealResponse.data.includes(i))
     ).toBe(true)

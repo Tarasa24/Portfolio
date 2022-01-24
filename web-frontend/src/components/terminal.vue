@@ -2,7 +2,7 @@
   <div class="blurred">
     <div id="terminal1">
       <span> root@tarasa24.dev:$ </span>
-      <span class="textfield">{{'echo ' + this.textArr[0] }}</span>
+      <span class="textfield">{{'echo ' + this.textArr[0] ? this.textArr[0] : '' }}</span>
       <span class="caret">_</span>
     </div>
     <div id="terminal2">
@@ -13,8 +13,8 @@
     <div class="iam">
       <span>{{
         this.$i18n.locale === 'cs'
-          ? 'Jsem ' + this.textArr[0] 
-          : 'I am ' + this.textArr[0] 
+          ? 'Jsem ' + this.textArr[0] ? this.textArr[0] : '' 
+          : 'I am ' + this.textArr[0] ? this.textArr[0] : '' 
       }}</span>
       <span>_</span>
     </div>

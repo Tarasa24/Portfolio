@@ -11,7 +11,7 @@
           <fa :icon="['fab', 'github']" title="Github" />
         </a>
         <a
-          href="www.linkedin.com/in/petr-gajdošík-84b053236"
+          href="https://www.linkedin.com/in/petr-gajdošík-84b053236"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -227,7 +227,7 @@
                   <fa :icon="['fab', 'github']" /> <b>Github</b> (@Tarasa24)
                 </a>
                 <a
-                  href="www.linkedin.com/in/petr-gajdošík-84b053236"
+                  href="https://www.linkedin.com/in/petr-gajdošík-84b053236"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

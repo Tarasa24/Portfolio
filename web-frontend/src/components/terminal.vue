@@ -149,7 +149,7 @@ export default {
     visibility: hidden
 
 .iam
-  display: flex;
+  display: flex
   justify-content: center
   text-align: center
   color: white

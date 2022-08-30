@@ -336,7 +336,7 @@ export default {
       color: white
 
 .about
-  /deep/
+  ::v-deep
     h2
       margin: 0
       strong
@@ -563,7 +563,6 @@ h1
           .pgp
             font-size: 0.8rem
         &:nth-of-type(2)
-          margin-top: 10px
           justify-self: center
           text-align: center
           .available

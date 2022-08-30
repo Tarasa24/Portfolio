@@ -151,10 +151,10 @@ export default {
   width: 100%
   box-sizing: border-box
   margin: 0
-  /deep/
+  ::v-deep
     center
       text-align: left !important
-      display: grid; 
+      display: grid 
       grid-template-columns: 128px auto 
       grid-template-rows: 73px 55px
       gap: 0px 20px
@@ -187,7 +187,7 @@ export default {
       &:hover
         text-decoration: underline
     h1, h2, h3, h4
-      border-bottom: 1px solid $grey;
+      border-bottom: 1px solid $grey
     img
       max-width: 100%
 

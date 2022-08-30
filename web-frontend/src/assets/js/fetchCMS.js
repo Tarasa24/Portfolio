@@ -3,7 +3,7 @@ export default async function (url, params = {}) {
 
   return await fetch(
     process.env.NODE_ENV == 'production'
-      ? process.server 
+      ? process.server
         ? `http://strapi:1337`
         : '/cms' + url
       : 'http://localhost:1337' + url,

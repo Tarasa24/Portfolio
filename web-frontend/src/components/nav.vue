@@ -4,9 +4,7 @@
   </nav>
   <nav class="mobile" v-else>
     <button @click="openMenu"><fa :icon="['fas', 'bars']" /></button>
-    <navContent
-      :class="{ opened: menuOpened, closed: !menuOpened }"
-    />
+    <navContent :class="{ opened: menuOpened, closed: !menuOpened }" />
   </nav>
 </template>
 
@@ -20,7 +18,7 @@ export default {
       menuOpened: false,
       menuBlock: false,
       width: window.innerWidth,
-      authorized: false,
+      authorized: false
     }
   },
   mounted() {
@@ -37,7 +35,7 @@ export default {
   watch: {
     '$route.hash': function () {
       this.menuOpened = false
-    },
+    }
   },
   methods: {
     openMenu() {
@@ -75,7 +73,7 @@ export default {
           break
         }
       }
-    },
+    }
   },
   fetchOnServer: false
 }

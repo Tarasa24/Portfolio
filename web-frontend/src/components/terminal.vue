@@ -2,7 +2,9 @@
   <div class="blurred">
     <div id="terminal1">
       <span> root@tarasa24.dev:$ </span>
-      <span class="textfield">{{'echo ' + this.textArr[0] ? this.textArr[0] : '' }}</span>
+      <span class="textfield">{{
+        'echo ' + this.textArr[0] ? this.textArr[0] : ''
+      }}</span>
       <span class="caret">_</span>
     </div>
     <div id="terminal2">
@@ -34,8 +36,11 @@ export default {
     }
   },
   async fetch() {
-    this.textArr = await fetchCMS(`/api/homepage?fields=terminalEchos&locale=${this.$i18n.locale}`).then(res => 
-      res.json().then(json => json.data.attributes.terminalEchos))
+    this.textArr = await fetchCMS(
+      `/api/homepage?fields=terminalEchos&locale=${this.$i18n.locale}`
+    ).then((res) =>
+      res.json().then((json) => json.data.attributes.terminalEchos)
+    )
   },
   methods: {
     async typing() {
@@ -46,11 +51,11 @@ export default {
       const iam = document.querySelector('.iam span')
       const terminal1 = {
         textfield: document.querySelector('#terminal1 > .textfield'),
-        root: document.getElementById('terminal1'),
+        root: document.getElementById('terminal1')
       }
       const terminal2 = {
         textfield: document.querySelector('#terminal2 > .textfield'),
-        root: document.getElementById('terminal2'),
+        root: document.getElementById('terminal2')
       }
       const caret = document.querySelector('.caret')
 
@@ -107,8 +112,8 @@ export default {
         caret.style.visibility = 'visible'
         await sleep(1000)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

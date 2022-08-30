@@ -28,18 +28,18 @@ export default {
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          charset: 'UTF-8',
+          charset: 'UTF-8'
         },
         {
           hid: 'viewport',
           name: 'viewport',
-          content: 'width=device-width,initial-scale=1',
+          content: 'width=device-width,initial-scale=1'
         },
-        ...i18nSeo.meta,
+        ...i18nSeo.meta
       ],
-      link: [...i18nSeo.link],
+      link: [...i18nSeo.link]
     }
-  },
+  }
 }
 </script>
 

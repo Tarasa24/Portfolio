@@ -7,7 +7,7 @@ const app = require('../../app')
 describe('/contact', () => {
   beforeAll(async () => {
     nodemailer.createTransport = jest.fn().mockReturnValue({
-      sendMail: jest.fn().mockResolvedValue({}),
+      sendMail: jest.fn().mockResolvedValue({})
     })
   })
 
@@ -15,18 +15,18 @@ describe('/contact', () => {
     const response = await request(app).post('/contact').send({
       name: 'John Doe',
       email: 'tarasa24@tarasa24.dev',
-      text: 'Hello world!',
+      text: 'Hello world!'
     })
     expect(response.status).toBe(200)
   })
   it('should return 400 on missing fields', async () => {
     const response = await request(app).post('/contact').send({
-      text: 'Hello world!',
+      text: 'Hello world!'
     })
     expect(response.status).toBe(400)
 
     const response2 = await request(app).post('/contact').send({
-      name: 'John Doe',
+      name: 'John Doe'
     })
     expect(response2.status).toBe(400)
 
@@ -39,13 +39,13 @@ describe('/contact', () => {
     const response = await request(app).post('/contact').send({
       name: 'John Doe',
       email: 'tarasa24@tarasa24',
-      text: 'Hello world!',
+      text: 'Hello world!'
     })
     expect(response.status).toBe(400)
   })
   it('should return 500 on error and response body should contain error string', async () => {
     nodemailer.createTransport = jest.fn().mockReturnValue({
-      sendMail: jest.fn().mockRejectedValue({}),
+      sendMail: jest.fn().mockRejectedValue({})
     })
     const response = await request(app).post('/contact').send({
       name: 'John Doe',

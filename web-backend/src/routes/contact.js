@@ -8,7 +8,7 @@ async function contact(req, res) {
   const lang = req.body.lang
   if (!name || !email || !text) {
     return res.status(400).json({
-      error: 'Please fill in all fields',
+      error: 'Please fill in all fields'
     })
   }
 
@@ -18,11 +18,11 @@ async function contact(req, res) {
     validateMx: true,
     validateTypo: false,
     validateDisposable: true,
-    validateSMTP: false,
+    validateSMTP: false
   })
   if (!validationResult.valid) {
     return res.status(400).json({
-      error: 'Please enter a valid email address | ' + validationResult.reason,
+      error: 'Please enter a valid email address | ' + validationResult.reason
     })
   }
 
@@ -33,11 +33,11 @@ async function contact(req, res) {
     secure: true,
     auth: {
       user: process.env.mailUser,
-      pass: process.env.mailPass,
+      pass: process.env.mailPass
     },
     tls: {
-      servername: 'mail.tarasa24.dev',
-    },
+      servername: 'mail.tarasa24.dev'
+    }
   })
 
   const mail = {
@@ -47,7 +47,7 @@ async function contact(req, res) {
     subject: `✉️ [tarasa24.dev] ${
       lang == 'cs' ? 'Zpráva od' : 'Message from'
     } ${name}`,
-    text: text,
+    text: text
   }
 
   try {
@@ -55,7 +55,7 @@ async function contact(req, res) {
     res.sendStatus(200)
   } catch (error) {
     res.status(500).json({
-      error,
+      error
     })
   }
 }

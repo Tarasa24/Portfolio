@@ -15,21 +15,18 @@
         class="language"
         :style="{
           backgroundColor: '#dadada',
-          width: round((1 - this.langs.reduce((pv, cv) => pv + cv.ratio, 0)) * 100, 1) + '%'
+          width:
+            round(
+              (1 - this.langs.reduce((pv, cv) => pv + cv.ratio, 0)) * 100,
+              1
+            ) + '%'
         }"
       />
     </span>
 
     <div class="languages">
-      <span
-        v-for="lang in this.langs"
-        :key="lang.language"
-        class="language"
-      >
-        <fa
-          :icon="['fas', 'circle']"
-          :style="{ color: lang.color }"
-        />
+      <span v-for="lang in this.langs" :key="lang.language" class="language">
+        <fa :icon="['fas', 'circle']" :style="{ color: lang.color }" />
         <span>{{ lang.language }}</span>
         <span class="percentage">{{ round(lang.ratio * 100, 1) }}%</span>
       </span>
@@ -37,12 +34,16 @@
         v-if="this.langs.reduce((pv, cv) => pv + cv.ratio, 0) < 1"
         class="language"
       >
-        <fa
-          :icon="['fas', 'circle']"
-          :style="{ color: '#dadada' }"
-        />
+        <fa :icon="['fas', 'circle']" :style="{ color: '#dadada' }" />
         <span>Other</span>
-        <span class="percentage">{{ round((1 - this.langs.reduce((pv, cv) => pv + cv.ratio, 0)) * 100, 1) }}%</span>
+        <span class="percentage"
+          >{{
+            round(
+              (1 - this.langs.reduce((pv, cv) => pv + cv.ratio, 0)) * 100,
+              1
+            )
+          }}%</span
+        >
       </span>
     </div>
   </main>
@@ -53,8 +54,8 @@ export default {
   props: ['langs'],
   methods: {
     round(value, precision) {
-      var multiplier = Math.pow(10, precision || 0);
-      return Math.round(value * multiplier) / multiplier;
+      var multiplier = Math.pow(10, precision || 0)
+      return Math.round(value * multiplier) / multiplier
     }
   }
 }

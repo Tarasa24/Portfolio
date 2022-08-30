@@ -11,14 +11,21 @@
           <fa :icon="['fab', 'github']" title="Github" />
         </a>
         <a
+          href="www.linkedin.com/in/petr-gajdošík-84b053236"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <fa :icon="['fab', 'linkedin']" title="LinkedIn" />
+        </a>
+        <a @click="copyDiscord">
+          <fa :icon="['fab', 'discord']" title="Discord" />
+        </a>
+        <a
           href="mailto:tarasa24@tarasa24.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
           <fa :icon="['fas', 'envelope']" title="Mail" />
-        </a>
-        <a @click="copyDiscord">
-          <fa :icon="['fab', 'discord']" title="Discord" />
         </a>
       </div>
       <div class="arrdown">
@@ -184,6 +191,17 @@
                 >
                   <fa :icon="['fab', 'github']" /> <b>Github</b> (@Tarasa24)
                 </a>
+                <a
+                  href="www.linkedin.com/in/petr-gajdošík-84b053236"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <fa :icon="['fab', 'linkedin']" /> <b>LinkedIn</b> (Petr Gajdošík)
+                </a>
+                <a @click="copyDiscord">
+                  <fa :icon="['fab', 'discord']" />
+                  <b>Tarasa24</b>#1761
+                </a>
                 <span>
                   <a
                     href="mailto:tarasa24@tarasa24.dev"
@@ -195,10 +213,6 @@
                   </a>
                   <a class="pgp" href="/pgpkey.txt">(PGP Key)</a>
                 </span>
-                <a @click="copyDiscord">
-                  <fa :icon="['fab', 'discord']" />
-                  <b>Tarasa24</b>#1761
-                </a>
               </section>
               <section class="box">
                 <h2>{{ $t('contact.availability') }}</h2>
@@ -563,6 +577,7 @@ h1
           .pgp
             font-size: 0.8rem
         &:nth-of-type(2)
+          margin-top: 30px
           justify-self: center
           text-align: center
           .available

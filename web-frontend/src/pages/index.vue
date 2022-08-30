@@ -11,14 +11,21 @@
           <fa :icon="['fab', 'github']" title="Github" />
         </a>
         <a
+          href="www.linkedin.com/in/petr-gajdošík-84b053236"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <fa :icon="['fab', 'linkedin']" title="LinkedIn" />
+        </a>
+        <a @click="copyDiscord">
+          <fa :icon="['fab', 'discord']" title="Discord" />
+        </a>
+        <a
           href="mailto:tarasa24@tarasa24.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
           <fa :icon="['fas', 'envelope']" title="Mail" />
-        </a>
-        <a @click="copyDiscord">
-          <fa :icon="['fab', 'discord']" title="Discord" />
         </a>
       </div>
       <div class="arrdown">
@@ -35,18 +42,31 @@
       <div id="About" class="box">
         <h1>{{ $t('about.h') }}</h1>
         <div class="underline" />
-        
-         <div v-html="compiledMarkdown" class="about"/>
 
-        <div v-if="this.homepageData.data && this.homepageData.data.attributes.resume" class="resume">
+        <div v-html="compiledMarkdown" class="about" />
+
+        <div
+          v-if="
+            this.homepageData.data && this.homepageData.data.attributes.resume
+          "
+          class="resume"
+        >
           <h5>
             {{ $t('about.resume') }}
           </h5>
           <a
-            :href="'/cms' + this.homepageData.data.attributes.resume.data.attributes.url"
+            :href="
+              '/cms' +
+              this.homepageData.data.attributes.resume.data.attributes.url
+            "
             class="link"
-            :title="this.homepageData.data.attributes.resume.data.attributes.name"
-            :aria-label="this.homepageData.data.attributes.resume.data.attributes.name + ' download link'"
+            :title="
+              this.homepageData.data.attributes.resume.data.attributes.name
+            "
+            :aria-label="
+              this.homepageData.data.attributes.resume.data.attributes.name +
+              ' download link'
+            "
           >
             <fa :icon="['far', 'file-alt']" />
           </a>
@@ -77,7 +97,10 @@
           >
             <div class="cardFlip">
               <div class="box project cardFront">
-                <img :src="project.attributes.imgURL" :alt="project.attributes.title" />
+                <img
+                  :src="project.attributes.imgURL"
+                  :alt="project.attributes.title"
+                />
                 <section>
                   <h3>{{ project.attributes.title }}</h3>
                   <span>{{ project.attributes.description }}</span>
@@ -95,29 +118,48 @@
                       {{ project.attributes.license }}
                     </span>
 
-                    <LanguageBar 
-                      v-if="project.attributes.lang && project.attributes.lang.length > 0"
+                    <LanguageBar
+                      v-if="
+                        project.attributes.lang &&
+                        project.attributes.lang.length > 0
+                      "
                       class="languageBar"
-                      :langs="project.attributes.lang" />
+                      :langs="project.attributes.lang"
+                    />
                   </div>
                 </section>
               </div>
 
               <div class="box project cardBack">
-                <img :src="project.attributes.imgURL" :alt="project.attributes.title" />
+                <img
+                  :src="project.attributes.imgURL"
+                  :alt="project.attributes.title"
+                />
                 <section>
                   <div class="links">
-                    <a :href="project.attributes.repoURL" target="_blank" rel="noopener noreferrer">
+                    <a
+                      :href="project.attributes.repoURL"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <fa :icon="['fab', 'github']" />
                       {{ $t('projects.links.repository') }}
                     </a>
 
-                    <a v-if="project.attributes.homepageURL" :href="project.attributes.homepageURL" target="_blank" rel="noopener noreferrer" >
+                    <a
+                      v-if="project.attributes.homepageURL"
+                      :href="project.attributes.homepageURL"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <fa :icon="['fas', 'external-link-square-alt']" />
                       {{ $t('projects.links.website') }}
                     </a>
 
-                    <nuxt-link v-if="project.attributes.readme" :to="localePath('/readme/' + project.attributes.title)">
+                    <nuxt-link
+                      v-if="project.attributes.readme"
+                      :to="localePath('/readme/' + project.attributes.title)"
+                    >
                       <fa :icon="['fas', 'file-alt']" />
                       {{ $t('projects.links.readme') }}
                     </nuxt-link>
@@ -184,6 +226,18 @@
                 >
                   <fa :icon="['fab', 'github']" /> <b>Github</b> (@Tarasa24)
                 </a>
+                <a
+                  href="www.linkedin.com/in/petr-gajdošík-84b053236"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <fa :icon="['fab', 'linkedin']" /> <b>LinkedIn</b> (Petr
+                  Gajdošík)
+                </a>
+                <a @click="copyDiscord">
+                  <fa :icon="['fab', 'discord']" />
+                  <b>Tarasa24</b>#1761
+                </a>
                 <span>
                   <a
                     href="mailto:tarasa24@tarasa24.dev"
@@ -195,21 +249,19 @@
                   </a>
                   <a class="pgp" href="/pgpkey.txt">(PGP Key)</a>
                 </span>
-                <a @click="copyDiscord">
-                  <fa :icon="['fab', 'discord']" />
-                  <b>Tarasa24</b>#1761
-                </a>
               </section>
               <section class="box">
                 <h2>{{ $t('contact.availability') }}</h2>
-                <div  v-if="this.homepageData.data" >
-                  <b 
+                <div v-if="this.homepageData.data">
+                  <b
                     v-if="this.homepageData.data.attributes.availability"
                     class="available"
                   >
                     {{ $t('contact.available') }}
                   </b>
-                  <b v-else class="unavailable">{{ $t('contact.not_available') }}</b>
+                  <b v-else class="unavailable">{{
+                    $t('contact.not_available')
+                  }}</b>
                 </div>
               </section>
             </div>
@@ -235,49 +287,54 @@ export default {
   components: { Top, Terminal, Mid1, Mid2, Spinner, LanguageBar },
   data() {
     return {
-      homepageData : {},
+      homepageData: {},
       projects: [],
-      state: 0,
+      state: 0
     }
   },
   computed: {
     compiledMarkdown() {
-      return require('marked').parse(this.homepageData.data ? this.homepageData.data.attributes.aboutMe : '')
+      return require('marked').parse(
+        this.homepageData.data ? this.homepageData.data.attributes.aboutMe : ''
+      )
     }
   },
-    head() {
+  head() {
     const i18nSeo = this.$nuxtI18nSeo()
     return {
       title: 'Petr Gajdošík (Tarasa24) | Portfolio',
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          charset: 'UTF-8',
+          charset: 'UTF-8'
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('seo.description'),
+          content: this.$t('seo.description')
         },
         {
           hid: 'viewport',
           name: 'viewport',
-          content: 'width=device-width,initial-scale=1',
+          content: 'width=device-width,initial-scale=1'
         },
         {
           property: 'og:image',
           content:
-            'https://avatars0.githubusercontent.com/u/20138731?s=460&u=1866fe357bd941ea017959bc14297565d1d23483&v=4',
+            'https://avatars0.githubusercontent.com/u/20138731?s=460&u=1866fe357bd941ea017959bc14297565d1d23483&v=4'
         },
-        ...i18nSeo.meta,
+        ...i18nSeo.meta
       ],
-      link: [...i18nSeo.link],
+      link: [...i18nSeo.link]
     }
   },
   async fetch() {
-    this.projects = await fetchCMS(`/api/projects?locale=${this.$i18n.locale}&sort[0]=downloads:DESC&sort[1]=stars:DESC`).then(res => res.json())
-    this.homepageData = await fetchCMS(`/api/homepage?populate=resume&locale=${this.$i18n.locale}`)
-      .then(res => res.json())
+    this.projects = await fetchCMS(
+      `/api/projects?locale=${this.$i18n.locale}&sort[0]=downloads:DESC&sort[1]=stars:DESC`
+    ).then((res) => res.json())
+    this.homepageData = await fetchCMS(
+      `/api/homepage?populate=resume&locale=${this.$i18n.locale}`
+    ).then((res) => res.json())
   },
   methods: {
     copyDiscord() {
@@ -297,7 +354,7 @@ export default {
         name: e.target.elements.name.value,
         email: e.target.elements.email.value,
         text: e.target.elements.text.value,
-        lang: this.$i18n.locale,
+        lang: this.$i18n.locale
       })
 
       switch (res) {
@@ -308,8 +365,8 @@ export default {
           this.state = -1
           break
       }
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -336,7 +393,7 @@ export default {
       color: white
 
 .about
-  /deep/
+  ::v-deep
     h2
       margin: 0
       strong
@@ -474,7 +531,7 @@ h1
         margin: 7.5px 0 10px 0
         @include small-device
           display: none
-      
+
       .links
         text-align: center
         margin: auto
@@ -563,7 +620,7 @@ h1
           .pgp
             font-size: 0.8rem
         &:nth-of-type(2)
-          margin-top: 10px
+          margin-top: 30px
           justify-self: center
           text-align: center
           .available

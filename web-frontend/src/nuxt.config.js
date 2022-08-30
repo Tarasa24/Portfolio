@@ -1,7 +1,7 @@
 export default {
   server: {
     host: '0.0.0.0',
-    port: 8080,
+    port: 8080
   },
   target: 'server',
   css: ['~assets/sass/global.sass'],
@@ -19,25 +19,25 @@ export default {
         imports: [
           {
             set: '@fortawesome/free-brands-svg-icons',
-            icons: ['fab'],
+            icons: ['fab']
           },
           {
             set: '@fortawesome/free-solid-svg-icons',
-            icons: ['fas'],
+            icons: ['fas']
           },
           {
             set: '@fortawesome/free-regular-svg-icons',
-            icons: ['far'],
-          },
-        ],
-      },
+            icons: ['far']
+          }
+        ]
+      }
     ],
     [
       'nuxt-i18n',
       {
         locales: [
           { code: 'cs', iso: 'cs', flag: 'cz' },
-          { code: 'en', iso: 'en', flag: 'gb', isCatchallLocale: true },
+          { code: 'en', iso: 'en', flag: 'gb', isCatchallLocale: true }
         ],
         defaultLocale: 'en',
         seo: true,
@@ -45,15 +45,15 @@ export default {
           fallbackLocale: 'en',
           messages: {
             en: require('./assets/lang/en.json'),
-            cs: require('./assets/lang/cs.json'),
-          },
-        },
-      },
+            cs: require('./assets/lang/cs.json')
+          }
+        }
+      }
     ],
-    ['@nuxtjs/google-gtag', { id: 'UA-164343382-1' }],
+    ['@nuxtjs/google-gtag', { id: 'UA-164343382-1' }]
   ],
   build: {},
   styleResources: {
-    sass: ['./assets/sass/*.sass'],
-  },
+    sass: ['./assets/sass/*.sass']
+  }
 }

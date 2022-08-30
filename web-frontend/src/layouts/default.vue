@@ -18,7 +18,7 @@ export default {
   modules: { Nav, Splash, Footer },
   data() {
     return {
-      loaded: false,
+      loaded: false
     }
   },
   async mounted() {
@@ -28,7 +28,7 @@ export default {
     this.loaded = false
     await sleep(500)
     this.loaded = true
-  },
+  }
 }
 </script>
 

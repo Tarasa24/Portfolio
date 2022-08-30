@@ -37,7 +37,7 @@ export default {
   computed: {
     locale() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)[0]
-    },
+    }
   },
   methods: {
     scrollTop() {
@@ -47,8 +47,8 @@ export default {
         document.title,
         window.location.pathname + window.location.search
       )
-    },
-  },
+    }
+  }
 }
 </script>
 

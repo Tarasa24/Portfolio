@@ -1,62 +1,58 @@
-const { response } = require('express')
 const request = require('supertest')
-const axios = require('axios')
-axios.defaults.adapter = require('axios/lib/adapters/http')
+
+const nodemailer = require('nodemailer')
+
 const app = require('../../app')
 
-describe('Test faulty input', () => {
-  test('It should respond 400 with no body', async () => {
-    const response = await request(app).post('/contact')
-    expect(response.statusCode).toBe(400)
-  })
-  test('It should respond 400 with missing name field', async () => {
-    const response = await request(app)
-      .post('/contact')
-      .send({ email: 'test@example.com', text: 'lorem ipsum' })
-    expect(response.statusCode).toBe(400)
-  })
-  test('It should respond 400 with missing email field', async () => {
-    const response = await request(app)
-      .post('/contact')
-      .send({ name: 'Test', text: 'lorem ipsum' })
-    expect(response.statusCode).toBe(400)
-  })
-  test('It should respond 400 with missing text field', async () => {
-    const response = await request(app)
-      .post('/contact')
-      .send({ name: 'Test', email: 'test@example.com' })
-    expect(response.statusCode).toBe(400)
-  })
-})
-
-describe('Test correct input', () => {
-  const mail = {
-    name: 'Test',
-    email: 'test@example.com',
-    text: 'lorem ipsum',
-  }
-  let response
-
+describe('/contact', () => {
   beforeAll(async () => {
-    response = await request(app)
-      .post('/contact')
-      .send(mail)
-      .set('Accept', 'text/plain')
+    nodemailer.createTransport = jest.fn().mockReturnValue({
+      sendMail: jest.fn().mockResolvedValue({})
+    })
   })
 
-  test('It should respond 200', async () => {
-    expect(response.statusCode).toBe(200)
+  it('should return 200 on successful submission', async () => {
+    const response = await request(app).post('/contact').send({
+      name: 'John Doe',
+      email: 'tarasa24@tarasa24.dev',
+      text: 'Hello world!'
+    })
+    expect(response.status).toBe(200)
   })
-  test('It should return correct email body fethced from Ethereal fake SMTP', async () => {
-    const etherealResponse = await axios(response.text + '/message.eml')
-    console.log(etherealResponse.data);
-    expect(
-      [
-        `From: tarasa24@tarasa24.dev`,
-        `To: tarasa24@tarasa24.dev`,
-        `Reply-To: ${mail.name} <${mail.email}>`,
-        mail.text,
-      ].every((i) => etherealResponse.data.includes(i))
-    ).toBe(true)
+  it('should return 400 on missing fields', async () => {
+    const response = await request(app).post('/contact').send({
+      text: 'Hello world!'
+    })
+    expect(response.status).toBe(400)
+
+    const response2 = await request(app).post('/contact').send({
+      name: 'John Doe'
+    })
+    expect(response2.status).toBe(400)
+
+    const response3 = await request(app).post('/contact').send({
+      email: ''
+    })
+    expect(response3.status).toBe(400)
+  })
+  it('should return 400 on invalid email', async () => {
+    const response = await request(app).post('/contact').send({
+      name: 'John Doe',
+      email: 'tarasa24@tarasa24',
+      text: 'Hello world!'
+    })
+    expect(response.status).toBe(400)
+  })
+  it('should return 500 on error and response body should contain error string', async () => {
+    nodemailer.createTransport = jest.fn().mockReturnValue({
+      sendMail: jest.fn().mockRejectedValue({})
+    })
+    const response = await request(app).post('/contact').send({
+      name: 'John Doe',
+      email: 'tarasa24@tarasa24.dev',
+      text: 'Hello world!'
+    })
+    expect(response.status).toBe(500)
+    expect(response.body.error).toBeDefined()
   })
 })

@@ -18,23 +18,32 @@
             {{ project.attributes.license }}
           </span>
           <span>
-            <a :href="this.project.attributes.repoURL" target="_blank" rel="noopener noreferrer">
+            <a
+              :href="this.project.attributes.repoURL"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <fa :icon="['fab', 'github']" />
               Repository
             </a>
           </span>
         </div>
-        <LanguageBar 
+        <LanguageBar
           v-if="project.attributes.lang && project.attributes.lang.length > 0"
           class="languageBar"
-          :langs="project.attributes.lang" />
+          :langs="project.attributes.lang"
+        />
       </div>
-      <div v-if="this.project.attributes.readme.length > 0" v-html="compiledMarkdown" class="body box" />
+      <div
+        v-if="this.project.attributes.readme.length > 0"
+        v-html="compiledMarkdown"
+        class="body box"
+      />
       <div v-else class="body box error">
         <b>{{ $t('readme.404') }}</b>
       </div>
     </div>
-  </main>  
+  </main>
 </template>
 
 <script>
@@ -52,46 +61,55 @@ export default {
   },
   async fetch() {
     this.project = await fetchCMS(
-      `/api/projects?locale=${this.$i18n.locale}&filters[title][$eq]=` + 
-      this.title).then(res => res.json().then(json => {
+      `/api/projects?locale=${this.$i18n.locale}&filters[title][$eq]=` +
+        this.title
+    ).then((res) =>
+      res.json().then((json) => {
         if (json.data.length === 0)
-          return this.$nuxt.error({ statusCode: 404, message: "Not found" })
+          return this.$nuxt.error({ statusCode: 404, message: 'Not found' })
         return json.data[0]
-      }))
+      })
+    )
   },
   head() {
     const i18nSeo = this.$nuxtI18nSeo()
     return {
-      title: `${this.project.attributes ? this.project.attributes.title : this.title} - README`,
+      title: `${
+        this.project.attributes ? this.project.attributes.title : this.title
+      } - README`,
       htmlAttrs: { ...i18nSeo.htmlAttrs },
       meta: [
         {
-          charset: 'UTF-8',
+          charset: 'UTF-8'
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.project.attributes ? this.project.attributes.description : '',
+          content: this.project.attributes
+            ? this.project.attributes.description
+            : ''
         },
         {
           hid: 'viewport',
           name: 'viewport',
-          content: 'width=device-width,initial-scale=1',
+          content: 'width=device-width,initial-scale=1'
         },
         {
           property: 'og:image',
           content: this.project.attributes ? this.project.attributes.imgURL : ''
         },
-        ...i18nSeo.meta,
+        ...i18nSeo.meta
       ],
-      link: [...i18nSeo.link],
+      link: [...i18nSeo.link]
     }
   },
   computed: {
     compiledMarkdown() {
-      return require('marked').parse(this.project.attributes ? this.project.attributes.readme : '')
+      return require('marked').parse(
+        this.project.attributes ? this.project.attributes.readme : ''
+      )
     }
-  },
+  }
 }
 </script>
 
@@ -151,11 +169,11 @@ export default {
   width: 100%
   box-sizing: border-box
   margin: 0
-  /deep/
+  ::v-deep
     center
       text-align: left !important
-      display: grid; 
-      grid-template-columns: 128px auto 
+      display: grid
+      grid-template-columns: 128px auto
       grid-template-rows: 73px 55px
       gap: 0px 20px
       grid-template-areas: "img ." "img ."
@@ -187,7 +205,7 @@ export default {
       &:hover
         text-decoration: underline
     h1, h2, h3, h4
-      border-bottom: 1px solid $grey;
+      border-bottom: 1px solid $grey
     img
       max-width: 100%
 

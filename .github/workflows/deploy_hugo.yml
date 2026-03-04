@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Change to hugo directory
+        run: cd hugo
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:

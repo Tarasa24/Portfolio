@@ -1,0 +1,30 @@
+name = "portfolio-contact-form"
+main = "src/worker.js"
+compatibility_date = "2026-02-19"
+
+[vars]
+# Turnstile secret key from Cloudflare.
+# TURNSTILE_SECRET = ""
+# Mailchannels API key (if required). Use `wrangler secret put MAILCHANNELS_API_KEY` instead of putting it here.
+# MAILCHANNELS_API_KEY = ""
+# Verified sender address for Mailchannels (must be on your domain).
+MAIL_FROM = "mailchannels@tarasa24.dev"
+# Comma-separated list of allowed origins for CORS.
+ALLOWED_ORIGINS = "http://localhost:1313,https://tarasa24.dev"
+# Destination mailbox.
+MAIL_TO = "portfolio@tarasa24.dev"
+
+# Optional: a friendly name for the From header.
+MAIL_FROM_NAME = "Portfolio Contact Form"
+
+# Rate limiting configuration
+RATE_LIMIT_ENABLED = true
+RATE_LIMIT_EMAIL_MAX = 1
+RATE_LIMIT_EMAIL_WINDOW_HOURS = 1
+RATE_LIMIT_IP_MAX = 5
+RATE_LIMIT_IP_WINDOW_HOURS = 1
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "d2df82eae6334360bfe2ccd438958e63"
+preview_id = "1bdd87278e1b44d3a1ae5c7e89694ada"

@@ -20,7 +20,6 @@ jobs:
         with:
           hugo-version: "0.151.0"
           extended: true
-        working-directory: hugo
 
       - name: Build Hugo site
         run: hugo --minify
@@ -30,10 +29,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./hugo/public
           publish_branch: gh-pages
           force_orphan: true
-        working-directory: hugo
 
       - name: Display build timestamp
         run: |

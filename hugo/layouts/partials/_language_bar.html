@@ -1,0 +1,24 @@
+{{ $totalRatio := 0 }}
+{{ $langs := slice }}
+{{ range . }}
+{{ $totalRatio = add $totalRatio .ratio }}
+{{ $langs = $langs | append (dict "language" .language "color" .color "ratio" .ratio) }}
+{{ end }}
+
+<ol class="language-bar">
+  {{ range $langs }}
+  <li class="language">
+    <i class="fa-solid fa-circle" style="color: {{ .color }}"></i>
+    <span>{{ .language }}</span>
+    <span class="percentage">{{ math.Round (mul .ratio 100) }}%</span>
+  </li>
+  {{ end }}
+
+  {{ if lt $totalRatio 1 }}
+  <li class="language">
+    <i class="fa-solid fa-circle" style="color: #dadada"></i>
+    <span>{{ T "projects.languages.unknown" }}</span>
+    <span class="percentage">{{ math.Round (mul (sub 1 $totalRatio) 100) }}%</span>
+  </li>
+  {{ end }}
+</ol>

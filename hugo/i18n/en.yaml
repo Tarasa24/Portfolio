@@ -1,0 +1,40 @@
+---
+terminal:
+  command_params: "Backend Developer;Student;Homelabber;Selfhoster;Linux Enjoyer;Network Tinkerer"
+about:
+  h: About
+projects:
+  h: Projects
+  links:
+    repository: Repository
+    website: Website
+    readme: README.en.md
+  languages:
+    unknown: Other
+contact:
+  h: Contact
+  intro: Interested in collaboration or have any questions? Feel free to reach out to me using the form below or through other contact methods found below.
+  form:
+    name: Your name
+    email: Your email
+    message: Your message
+    submit: Send
+    error: Something went wrong
+    sent: Sent
+    encrypting: Encrypting...
+    sending: Sending...
+    missing_turnstile: Please complete the verification.
+    missing_worker: Contact form is not configured yet.
+    rate_limited: Thanks for reaching out! Unfortunately, your message couldn't be sent because you've already sent too many messages.
+    noscript: JavaScript is required to encrypt and send this message.
+    pgp_notice: Message's content will be E2E encrypted using PGP
+notice:
+  copied: Discord handle has been copied
+error:
+  "404": Page not found
+  err: An error has ocured
+  home: Home
+readme:
+  "404":
+    README isn't available. Try switching the website to different language or
+    check out the repository instead.

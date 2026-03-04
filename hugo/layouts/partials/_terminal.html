@@ -1,0 +1,24 @@
+{{ $command_params := split (T "terminal.command_params") ";" }}
+{{ $first_command := index $command_params 0 }}
+
+<div class="terminal">
+  <div class="terminal__blurred">
+    <span class="terminal__blurred__line">
+      <span>root@tarasa24.dev:$</span>
+      <span class="textfield">echo {{ $first_command }}</span>
+      <span class="caret">_</span>
+    </span>
+    <span class="terminal__blurred__line">
+      <span>root@tarasa24.dev:$</span>
+      <span class="textfield"></span>
+      <span class="caret">_</span>
+    </span>
+  </div>
+
+  <div class="terminal__output">
+    <hgroup>
+    <h1>{{ $first_command }}</h1>
+    <span class="caret">_</span>
+    </hgroup>
+  </div>
+</div>

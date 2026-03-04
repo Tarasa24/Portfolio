@@ -1,0 +1,55 @@
+{{ define "main" }}
+<main class="project">
+    <a href="/" class="project__backlink">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    {{ partial "_hrsvg.html"}}
+    <div class="project__content__header">
+        <div class="project__content_header__stats">
+            {{ if gt .Params.Stars 0 }}
+            <span>
+                <i class="fa-solid fa-star"></i>
+                {{ .Params.stars }}
+            </span>
+            {{ end }}
+            {{ if .Params.Downloads }}
+            <span>
+                <i class="fa-solid fa-download"></i>
+                {{ .Params.Downloads }}
+            </span>
+            {{ end }}
+
+            {{ if .Params.Forks }}
+            <span>
+                <i class="fa-solid fa-code-fork"></i>
+                {{ .Params.Forks }}
+            </span>
+            {{ end }}
+
+            {{ if .Params.License}}
+            <span>
+                <i class="fa-solid fa-balance-scale"></i>
+                {{ .Params.License }}
+            </span>
+            {{ end }}
+            <span>
+                <a href="{{ .Params.repo_url }}" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                    Repository
+                </a>
+            </span>
+        </div>
+        {{ if .Params.Lang }}
+        {{ partial "_language_bar.html" .Params.lang }}
+        {{ end }}
+    </div>
+
+    <article class="project__content__body box">
+        {{ if .Content }}
+        {{ .Content }}
+        {{ else }}
+        <b>{{ T "readme.404" }}</b>
+        {{ end }}
+    </article>
+</main>
+{{ end }}

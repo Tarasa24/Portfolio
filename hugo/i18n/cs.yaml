@@ -1,0 +1,40 @@
+---
+terminal:
+  command_params: "Backend Vývojář;Student;Homelabber;Selfhoster;Linux Enjoyer;Síťový Bastlíř"
+about:
+  h: O mně
+projects:
+  h: Projekty
+  links:
+    repository: Repository
+    website: Web
+    readme: README.cz.md
+  languages:
+    unknown: Ostatní
+contact:
+  h: Kontakt
+  intro: Máte zájem o spolupráci nebo máte nějaké dotazy? Neváhejte mě kontaktovat prostřednictvím formuláře níže nebo jinými způsoby uvedenými níže.
+  form:
+    name: Vaše jméno
+    email: Váš email
+    message: Vaše zpráva
+    submit: Odeslat
+    error: Něco se pokazilo
+    sent: Odesláno
+    encrypting: Šifrování...
+    sending: Odesílání...
+    missing_turnstile: Dokončete prosím ověření.
+    missing_worker: Kontaktní formulář ještě není nastaven.
+    rate_limited: Děkuji za kontakt! Vaše zpráva bohužel nemohla být odeslána, protože jste již odeslali příliš mnoho zpráv.
+    noscript: Pro šifrování a odeslání zprávy je nutný JavaScript.
+    pgp_notice: Zpráva bude E2E šifrovaná pomocí PGP
+notice:
+  copied: Discord handle byl zkopírován
+error:
+  "404": Stránka nenalezena
+  err: Vyskytla se chyba
+  home: Domů
+readme:
+  "404":
+    README není k dispozici. Zkuste stránku přepnout do jiného jazyka, nebo místo
+    toho navšitvte repozitář

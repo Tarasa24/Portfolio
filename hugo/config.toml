@@ -1,0 +1,26 @@
+baseURL = "https://tarasa24.dev/"
+languageCode = "en-us"
+title = "Portfolio"
+
+defaultContentLanguage = "en"
+
+[params]
+  cf_turnstile_site_key = "0x4AAAAAACCVl6oKRzbxrXlw"
+  contact_worker_url = "https://portfolio-contact-form.tarasa24.workers.dev/"
+
+[languages]
+  [languages.en]
+    weight = 1
+    languageName = "English"
+    languageCode = "en"
+    contentDir = "content/en"
+  [languages.cs]
+    weight = 2
+    languageName = "Čeština"
+    languageCode = "cs"
+    contentDir = "content/cs"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

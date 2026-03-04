@@ -1,0 +1,25 @@
+.call-to-action
+  display: flex
+  justify-content: center
+  a
+    display: flex
+    align-items: center
+    flex-direction: column
+    text-decoration: none
+    color: inherit
+    span
+      font-size: 1rem
+      margin-bottom: 1rem
+      letter-spacing: 0.5rem
+      margin-right: -0.5rem
+    i
+      font-size: 2rem
+      animation: bounce 3s infinite ease-in-out
+
+@keyframes bounce
+  20%, 100%
+    transform: translateY(0px)
+  0%
+    transform: translateY(0px)
+  10%
+    transform: translateY(10px)

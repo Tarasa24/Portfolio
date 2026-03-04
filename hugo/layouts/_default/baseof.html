@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title should be .Site.Title if route is root (or /cs/ or /en/) otherwise page_name | .Site.Title -->
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ replace (T "terminal.command_params") ";" " • " | htmlEscape }}">
+
+  <!-- multilingual SEO optimizations -->
+  {{ if .IsTranslated }}
+  {{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+  {{ end }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{ end }}
+
+  <!-- main CSS -->
+  {{ with resources.Get "sass/index.sass" }}
+    {{ $opts := dict
+      "enableSourceMap" hugo.IsDevelopment
+      "outputStyle" (cond hugo.IsDevelopment "expanded" "compressed")
+      "targetPath" "css/main.css"
+      "transpiler" "dartsass"
+      "vars" site.Params.styles
+      "includePaths" (slice "node_modules/bootstrap/scss")
+    }}  
+    {{ with . | toCSS $opts }}
+      {{ if hugo.IsDevelopment }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}">
+      {{ else }}
+        {{ with . | minify | fingerprint }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="/fontawesome/css/fontawesome.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/fontawesome/css/brands.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/fontawesome/css/solid.css" media="print" onload="this.media='all'" />
+
+  <!-- CF-Turnstile -->
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
+</head>
+
+<body>
+  {{ block "main" . }}
+  {{ end }}
+
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+  ></script>
+
+  {{ if .IsHome }}
+    <script src="https://cdn.jsdelivr.net/npm/openpgp@5.10.1/dist/openpgp.min.js" defer></script>
+    {{ with resources.Get "js/contact-form.js" }}
+      {{ if hugo.IsDevelopment }}
+        <script src="{{ .RelPermalink }}" defer></script>
+      {{ else }}
+        {{ with . | minify | fingerprint }}
+          <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</body>
+
+</html>

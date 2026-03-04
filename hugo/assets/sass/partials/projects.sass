@@ -1,0 +1,117 @@
+.index__projects
+  background-color: $bg-light
+  padding-bottom: 5rem
+
+  &__container
+    margin-top: 5rem
+
+  &__list
+    padding: 0
+    margin: 0 auto
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+
+    > li // Each project card
+      list-style: none
+
+  .card-container
+    margin: 1rem auto
+    width: 100%
+
+    &__card-front, &__card-back // Shared styles for front and back
+      padding: 1rem
+      display: flex
+      flex-direction: row
+      flex: 9
+      margin: 0
+      width: 100%
+
+      img
+        align-self: center
+        display: block
+        margin-right: 1rem
+        max-width: 15vw
+        max-height: 15vh
+        object-fit: contain
+        width: 150px
+        height: 100%
+
+      &__content
+        flex: 8
+
+    &__card-flip-icon
+      align-self: flex-end
+      color: $muted-text
+      // Animation to highlight flip action, rotate 
+      animation: flip-icon-animation 2s infinite ease-in-out
+      @keyframes flip-icon-animation
+        0%, 100%
+          transform: rotate(0deg)
+        25%, 75%
+          transform: rotate(45deg)
+
+    &__card-front__content // Front side styles
+      display: flex
+      flex-direction: column
+      justify-content: center
+      padding: 1rem 0
+      > :nth-child(1) //a
+        margin: 0
+        margin-bottom: 0.5rem
+        font-size: 1.5rem
+      > :nth-child(2) // Description
+        color: $text-secondary
+        flex-grow: 1
+      > :nth-child(3) // Stats
+        margin: 0.5rem 0
+        font-size: 0.9rem
+
+        @include small-device
+          display: none
+      > :nth-child(4) // langs
+        list-style: none
+        margin: 0
+        padding: 0
+        display: flex
+        column-gap: 0.5rem
+        flex-wrap: wrap
+        .language
+          white-space: nowrap
+        @include small-device
+          display: none
+
+    &__card-back__content // Back side styles
+      width: 100%
+      max-width: 35vw
+      margin: 0 auto
+      display: flex
+      gap: 0.5rem
+      flex-direction: row
+      justify-content: space-evenly
+      align-items: center
+      padding: 0 1rem
+
+      a
+        font-size: 1.5rem
+        text-decoration: none
+        color: $muted-text
+        display: flex
+        flex-direction: column
+        align-items: center
+        @include transition(color)
+
+        i // icon
+          margin-bottom: 0.5rem
+          font-size: 3rem
+
+        &:hover
+          color: $gh-blue
+
+        @include medium-device
+          font-size: 1.2rem
+        @include small-device
+          font-size: 1rem
+
+  &__call-to-action
+    margin-top: 5rem

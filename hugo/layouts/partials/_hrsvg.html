@@ -1,0 +1,13 @@
+{{ $fill := . | default "" }}
+{{ $svg := resources.Get "svg/hrsvg.svg" }}
+
+{{ $fill_replacement := printf "fill=\"%s\"" $fill }}
+{{ if eq $fill "" }}
+  {{ $fill_replacement = "" }}
+{{ end }}
+
+{{ $svg := replaceRE "fill=\"[^\"]*\"" $fill_replacement (readFile "assets/svg/hrsvg.svg") }}
+
+<div class="hrsvg">
+ {{ $svg | safeHTML }}
+</div>

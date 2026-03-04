@@ -1,0 +1,77 @@
+<li class="card-container">
+  <article class="card-container__card-flip">
+    <div class="card-container__card-front box">
+      {{ if fileExists (printf "./static/assets/img/projects/%s.png" .File.BaseFileName) }}
+      <img src="/assets/img/projects/{{ .File.BaseFileName }}.png" alt="{{ .Title }}"></img>
+      {{ else }}
+      <img src="/assets/img/default_project_image.png" alt="{{ .Title }}"></img>
+      {{ end }}
+
+      <div class="card-container__card-front__content">
+        <h1>{{ .Title }}</h1>
+        <span>{{ .Description }}</span>
+        <div>
+          {{ if gt .Params.Stars 0 }}
+          <span>
+            <i class="fa-solid fa-star"></i>
+            {{ .Params.Stars }}
+          </span>
+          {{ end }}
+
+          {{ if .Params.Downloads }}
+          <span>
+            <i class="fa-solid fa-download"></i>
+            {{ .Params.Downloads }}
+          </span>
+          {{ end }}
+
+          {{ if .Params.Forks }}
+          <span>
+            <i class="fa-solid fa-code-fork"></i>
+            {{ .Params.Forks }}
+          </span>
+          {{ end }}
+
+          {{ if .Params.License}}
+          <span>
+            <i class="fa-solid fa-balance-scale"></i>
+            {{ .Params.License }}
+          </span>
+          {{ end }}
+        </div>
+        {{ if .Params.Lang }}
+        {{ partial "_language_bar.html" .Params.lang }}
+        {{ end }}
+      </div>
+      <i class="fa-solid fa-rotate-right card-container__card-flip-icon"></i>
+    </div>
+
+    <div class="card-container__card-back box">
+      {{ if fileExists (printf "./static/assets/img/projects/%s.png" .File.BaseFileName) }}
+      <img src="/assets/img/projects/{{ .File.BaseFileName }}.png" alt="{{ .Title }}"></img>
+      {{ else }}
+      <img src="/assets/img/default_project_image.png" alt="{{ .Title }}"></img>
+      {{ end }}
+      <div class="card-container__card-back__content">
+        <a href="{{ .Params.repo_url }}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+          {{ T "projects.links.repository" }}
+        </a>
+
+        {{ if .Params.homepage_url }}
+        <a href="{{ .Params.homepage_url }}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-external-link-square-alt"></i>
+          {{ T "projects.links.website" }}
+        </a>
+        {{ end }}
+
+        {{ if .Content }}
+        <a href="{{ .Permalink }}">
+          <i class="fa-solid fa-file-alt"></i>
+          {{ T "projects.links.readme" }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </article>
+</li>

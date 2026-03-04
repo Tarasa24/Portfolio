@@ -1,0 +1,47 @@
+@import partials/terminal.sass
+@import partials/projects.sass
+@import partials/contact-form.sass
+
+  
+.index
+  .index__head
+    background-color: $bg-color
+    
+    .hrsvg 
+      background-color: white
+      > svg
+        fill: $bg-color
+      
+  .index__head__links
+    margin-top: 1rem
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1.5rem
+    gap: 1rem
+    a
+      text-decoration: none
+      color: white
+      transition: color 0.3s ease, scale 0.3s ease
+      &:hover
+        color: $gh-blue
+        scale: 1.1
+
+  .index__head__call-to-action
+    color: white
+    margin-top: 20vh
+
+  .index__about
+    &__call-to-action
+      margin-top: 2rem
+
+    &__content
+      text-align: justify
+      ul, ol
+        list-style-position: outside;
+
+
+      blockquote > p
+        text-align: center
+        font-size: 0.75rem
+        color: $muted-text

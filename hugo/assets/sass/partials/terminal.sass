@@ -1,0 +1,55 @@
+.terminal
+  color: white
+  font-family: monospace
+
+  .terminal__blurred
+    filter: blur(1.5px)
+    display: flex
+    flex-direction: column
+    padding: 0.5rem
+    margin-bottom: 25vh
+
+  .terminal__blurred__line
+    display: flex
+    text-wrap: nowrap
+    span:first-child
+      color: lime
+    .textfield
+      margin-left: 0.5rem
+    @include small-device
+      font-size: 0.75rem
+
+  .caret
+    background: $bg-color
+    color: transparent
+    filter: invert(1)
+    animation: blink 1.5s infinite
+  
+  .terminal__output
+    hgroup
+      display: flex
+      justify-content: center
+      align-items: flex-end
+      text-wrap: nowrap
+    h1
+      margin: 0
+      font-weight: normal
+
+    .caret
+      position: relative
+      bottom: 0.25rem
+      left: 0.5rem
+    
+    h1, .caret
+      font-size: 2.5rem
+      @include medium-device
+        font-size: 2rem
+      @include small-device
+        font-size: 1.5rem
+
+  @keyframes blink
+    0%,
+    100%
+      filter: invert(1)
+    50%
+      filter: invert(0)

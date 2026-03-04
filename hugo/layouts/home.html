@@ -1,0 +1,172 @@
+{{ define "main" }}
+<main class="index">
+  <section class="index__head">
+    {{ partial "_terminal.html" . }}
+    <div class="index__head__links">
+      {{ if eq .Site.Language.Lang "en" }}
+      <a href="/cs/">🇨🇿</a>
+      {{ else }}
+      <a href="/en/">🇬🇧</a>
+      {{ end }}
+      <a href="https://github.com/Tarasa24" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/petr-gajdošík-84b053236" target="_blank" rel="noopener noreferrer"
+        aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="https://discordapp.com/users/190921538646704128" target="_blank" rel="noopener noreferrer"
+        aria-label="Discord">
+        <i class="fa-brands fa-discord"></i>
+      </a>
+      <a href="mailto:portfolio@tarasa24.dev" target="_blank" rel="noopener noreferrer" aria-label="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+    <div class="index__head__call-to-action call-to-action">
+      <a href="#About">
+        <span>{{ T "about.h" }}</span>
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
+    </div>
+
+    {{ partial "_hrsvg.html"}}
+  </section>
+
+  <section class="index__about">
+    <div id="About" class="index__about__container box">
+      <h2>{{ T "about.h" }}</h1>
+        <div class="index__about__underline underline"></div>
+
+        <div class="index__about__content">
+          {{ with .Site.GetPage "_about" }}
+          {{ .Content }}
+          {{ end }}
+        </div>
+    </div>
+
+    <div class="index__about__call-to-action call-to-action">
+      <a href="#Projects">
+        <span>{{ T "projects.h" }}</span>
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
+    </div>
+    <br />
+  </section>
+
+  <section class="index__projects">
+    {{ partial "_hrsvg.html" "white"}}
+    <div id="Projects" class="index__projects__container box">
+      <h2>{{ T "projects.h" }}</h2>
+      <div class="index__projects__underline underline"></div>
+
+      <a href="#" aria-hidden="true"><!-- Empty anchor to catch tabbing focus --></a>
+
+      {{ $projects := (where .Site.RegularPages "Section" "projects") }}
+      {{ $projects = sort $projects "Params.Downloads" "desc" }}
+      {{ $projects = sort $projects "Params.Stars" "desc" }}
+      <ul class="index__projects__list">
+        {{ range $projects }}
+        {{ partial "_project_card.html" . }}
+        {{ end }}
+      </ul>
+    </div>
+
+    <div class="index__projects__call-to-action call-to-action">
+      <a href="#Contact">
+        <span>{{ T "contact.h" }}</span>
+        <i class="fa-solid fa-angle-double-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="index__contact">
+    {{ partial "_hrsvg.html"}}
+    <div id="Contact" class="index__contact__container box">
+      <h2>{{ T "contact.h" }}</h2>
+      <div class="index__contact__underline underline"></div>
+
+      <p class="index__contact__intro">{{ T "contact.intro" }} </p>
+
+      <div class="index__contact__split">
+        <div class="index__contact__split__left">
+          <ul>
+            <li>
+              <a href="https://github.com/Tarasa24" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i> <b>Github</b>
+                <br>
+                @Tarasa24
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/petr-gajdošík-84b053236" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i> <b>LinkedIn</b>
+                <br>
+                Petr Gajdošík
+              </a>
+            </li>
+            <li>
+              <a href="https://discordapp.com/users/190921538646704128" target="_blank" rel="noopener noreferrer"
+                aria-label="Discord">
+                <i class="fa-brands fa-discord"></i> <b>Discord</b>
+                <br>
+                Tarasa24#1761
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contact@tarasa24.dev" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-envelope"></i> <b>Email</b>
+                <br>
+                contact@tarasa24.dev
+              </a>
+            </li>
+            <li>
+              <a href="/assets/pubkey.asc">
+                <i class="fa-solid fa-key"></i> <b>PGP Key</b>
+                <br>
+                0x6438D24F755968A5
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="index__contact__split__right">
+          <form action="/submit" method="POST" id="contact-form" data-worker-url='{{ .Site.Params.contact_worker_url }}'
+            data-pubkey-url="/assets/pubkey.asc" data-status-sent='{{ T "contact.form.sent" }}'
+            data-status-error='{{ T "contact.form.error" }}' data-status-encrypting='{{ T "contact.form.encrypting" }}'
+            data-status-sending='{{ T "contact.form.sending" }}'
+            data-status-missing-turnstile='{{ T "contact.form.missing_turnstile" }}'
+            data-status-missing-worker='{{ T "contact.form.missing_worker" }}'
+            data-status-rate-limited='{{ T "contact.form.rate_limited" }}'
+            data-dev='{{ if hugo.IsDevelopment }}true{{ else }}false{{ end }}'>
+            <fieldset>
+              <label for="name">{{ T "contact.form.name" }}</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+
+              <label for="email">{{ T "contact.form.email" }}</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+
+              <label for="message">{{ T "contact.form.message" }}</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+
+              <div class="cf-turnstile" data-sitekey="{{ .Site.Params.cf_turnstile_site_key }}"></div>
+
+              <div>
+                <button type="submit">{{ T "contact.form.submit" }}</button>
+                <span class="pgp-notice">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  {{ T "contact.form.pgp_notice" }}
+                </span>
+              </div>
+            </fieldset>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <noscript>
+              <p class="form-status form-status--noscript">{{ T "contact.form.noscript" }}</p>
+            </noscript>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{ end }}

@@ -1,0 +1,41 @@
+.card-container
+  display: grid
+  perspective: 700px
+
+  &__card-flip
+    display: grid
+    grid-template: 1fr / 1fr
+    grid-template-areas: "frontAndBack"
+    transform-style: preserve-3d
+    transition: opacity, transform 0.7s ease
+
+
+  &__card-front
+    @include transition(opacity)
+    opacity: 1
+    background-color: white
+    grid-area: frontAndBack
+    pointer-events: none
+
+  &__card-back
+    @include transition(opacity)
+    opacity: 0
+    background-color: white
+    grid-area: frontAndBack
+    transform: rotateX(-180deg)
+    pointer-events: none
+
+.card-container:hover .card-container__card-flip,
+.card-container:focus-within .card-container__card-flip
+  transform: rotateX(180deg)
+  .card-container__card-front
+    opacity: 0
+  .card-container__card-back
+    opacity: 1
+    pointer-events: all
+    @media (hover: none) and (pointer: coarse)
+      animation: disable-pointer-events 0.7s forwards
+
+@keyframes disable-pointer-events
+  0%, 99%
+    pointer-events: none; 

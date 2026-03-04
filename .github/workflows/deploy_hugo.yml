@@ -22,7 +22,7 @@ jobs:
           extended: true
 
       - name: Install Dart Sass
-        run: npm install -g sass
+        run: npm install -g dart-sass
 
       - name: Build Hugo site
         run: hugo --minify

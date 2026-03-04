@@ -1,0 +1,58 @@
+name: Update Pinned Repos
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"  # every Sunday at midnight UTC
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
+  BASE_BRANCH: master
+  CS_DIR: cs
+  EN_DIR: en
+
+jobs:
+  update_repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate Markdown for pinned repos
+        run: |
+          python scripts/fetch_and_generate.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b update-pinned-repos || git checkout update-pinned-repos
+          git add cs/ en/
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Update pinned repos markdown"
+          git push -u origin HEAD --force
+
+      - name: Create PR and merge
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update pinned repos markdown"
+          branch: update-pinned-repos
+          title: "Update pinned repos markdown"
+          body: "Automatic update of pinned repositories"
+          labels: automated
+          merge-method: squash

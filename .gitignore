@@ -15,3 +15,6 @@ resources/
 # Project content and images
 hugo/content/*/projects/*.md
 hugo/static/assets/img/projects/*
+
+# Python
+.venv

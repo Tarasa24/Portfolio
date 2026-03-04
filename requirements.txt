@@ -1,0 +1,4 @@
+requests
+jinja2
+PyYAML
+beautifulsoup4

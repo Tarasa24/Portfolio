@@ -1,0 +1,17 @@
++++
+title = "{{ frontmatter.title | replace('"', '\\"') }}"
+description = "{{ frontmatter.description | replace('"', '\\"') }}"
+stars = {{ frontmatter.stars }}
+downloads = {{ frontmatter.downloads }}
+forks = {{ frontmatter.forks }}
+license = "{{ frontmatter.license | replace('"', '\\"') }}"
+homepage_url = "{{ frontmatter.homepage_url | replace('"', '\\"') }}"
+repo_url = "{{ frontmatter.repo_url | replace('"', '\\"') }}"
+lang = [
+{%- for l in frontmatter.lang %}
+  { language = "{{ l.language | replace('"', '\\"') }}", color = "{{ l.color | replace('"', '\\"') }}", ratio = {{ l.ratio }} }{% if not loop.last %},{% endif %}
+{%- endfor %}
+]
++++
+
+{{ readme }}

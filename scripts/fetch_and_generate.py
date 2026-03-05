@@ -4,6 +4,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import jinja2
 import yaml
+import logging
 
 GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 BRANCHES = ['v1', 'main', 'master'] # V1 is a bit random here but it is SCS_RPC2 requirement
@@ -14,20 +15,31 @@ TEMPLATE_FILE = Path('../templates/repo_template.j2')
 
 HEADERS = {"Authorization": f"token {GITHUB_TOKEN}"}
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+logger = logging.getLogger(__name__)
+
 # Load Jinja2 template
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(str(TEMPLATE_FILE.parent)))
 template = env.get_template(TEMPLATE_FILE.name)
 
 def clear_content_dirs():
+    logger.info("Clearing content directories")
     for folder in [CS_DIR, EN_DIR]:
         if folder.exists():
+            logger.info(f"Removing markdown files in {folder}")
             for file in folder.glob("*.md"):
                 file.unlink()
         else:
+            logger.info(f"Creating directory {folder}")
             folder.mkdir(parents=True)
 
     if not STATIC_DIR.exists():
+        logger.info(f"Creating static image directory {STATIC_DIR}")
         STATIC_DIR.mkdir(parents=True)
+    logger.info(f"Removing existing images in {STATIC_DIR}")
     for img in STATIC_DIR.glob("*"):
         img.unlink()
 
@@ -48,6 +60,7 @@ def get_localized_description(readme_text):
     return ""
 
 def fetch_pinned_repos():
+    logger.info("Fetching pinned repositories from GitHub GraphQL")
     query = '''
     {
       viewer {
@@ -72,35 +85,45 @@ def fetch_pinned_repos():
     '''
     resp = requests.post("https://api.github.com/graphql", json={"query": query}, headers=HEADERS)
     resp.raise_for_status()
-    return resp.json()['data']['viewer']['pinnedItems']['nodes']
+    repos = resp.json()['data']['viewer']['pinnedItems']['nodes']
+    logger.info(f"Fetched {len(repos)} pinned repositories")
+    return repos
 
 def fetch_readme(repo, code):
+    logger.info(f"Fetching README for {repo['name']} ({code})")
     code = '.cz' if code == 'cs' else ''
     for branch in BRANCHES:
       url = f"https://raw.githubusercontent.com/Tarasa24/{repo['name']}/refs/heads/{branch}/README{code}.md"
       resp = requests.get(url)
       if resp.status_code == 200:
+          logger.info(f"Found README for {repo['name']} on branch {branch} ({'cs' if code else 'en'})")
           return resp.text
       continue
+    logger.warning(f"README not found for {repo['name']} ({'cs' if code else 'en'}) on branches: {', '.join(BRANCHES)}")
     return ""
 
 def fetch_and_save_image(url, name):
     if not url:
+        logger.info(f"No image URL found for {name}, skipping image download")
         return
     img_path = STATIC_DIR / f"{name}.png"
     if img_path.exists():
+        logger.info(f"Image already exists for {name}, skipping")
         return
     try:
+        logger.info(f"Downloading image for {name} from {url}")
         # Emulate browser headers to avoid potential blocking
         resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
         with img_path.open('wb') as f:
             f.write(resp.content)
+        logger.info(f"Saved image for {name} to {img_path}")
     except Exception as e:
-        print(f"Failed to fetch image for {name}: {e}")
+        logger.warning(f"Failed to fetch image for {name}: {e}")
 
 def generate_markdown(repo):
     name = repo['name']
+    logger.info(f"Generating markdown for repository: {name}")
     desc = repo['description'] or ""
     license_name = repo['licenseInfo']['name'] if repo['licenseInfo'] else ""
     homepage = repo['homepageUrl'] or ""
@@ -120,6 +143,7 @@ def generate_markdown(repo):
 
     # Generate files for cs and en
     for code, folder in [('cs', CS_DIR), ('en', EN_DIR)]:
+        logger.info(f"Rendering {code} content for {name}")
         readme_content = fetch_readme(repo, code)
         img_url = get_img_url(readme_content)
         fetch_and_save_image(img_url, name)
@@ -140,9 +164,12 @@ def generate_markdown(repo):
         out_file = folder / f"{name}.md"
         with out_file.open('w', encoding='utf-8') as f:
             f.write(md_content)
+        logger.info(f"Wrote markdown file: {out_file}")
 
 if __name__ == "__main__":
+    logger.info("Starting pinned repo content generation")
     clear_content_dirs()
     repos = fetch_pinned_repos()
     for repo in repos:
         generate_markdown(repo)
+    logger.info("Finished pinned repo content generation")

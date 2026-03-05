@@ -39,7 +39,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b update-pinned-repos || git checkout update-pinned-repos
-          git add cs/ en/
+          git add hugo/static/assets/img/projects hugo/content/cs/projects hugo/content/en/projects
           if git diff-index --quiet HEAD; then
             echo "No changes to commit"
             exit 0

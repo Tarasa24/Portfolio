@@ -36,6 +36,9 @@ jobs:
           cd hugo
           hugo --minify
 
+      - name: Add CNAME file for custom domain
+        run: echo "tarasa24.dev" > ./hugo/public/CNAME
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

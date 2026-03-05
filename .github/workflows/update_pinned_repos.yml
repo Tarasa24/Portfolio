@@ -54,4 +54,3 @@ jobs:
           title: "Update pinned repos markdown"
           body: "Automatic update of pinned repositories"
           labels: automated
-          merge-method: squash

@@ -7,7 +7,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
+  API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
   BASE_BRANCH: master
 
 jobs:

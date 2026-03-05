@@ -6,7 +6,7 @@ import jinja2
 import yaml
 import logging
 
-GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
+GITHUB_TOKEN = os.environ['GITHUB_API_TOKEN']
 BRANCHES = ['v1', 'main', 'master'] # V1 is a bit random here but it is SCS_RPC2 requirement
 CS_DIR = Path(os.environ.get('CS_DIR', '../hugo/content/cs/projects'))
 EN_DIR = Path(os.environ.get('EN_DIR', '../hugo/content/en/projects'))

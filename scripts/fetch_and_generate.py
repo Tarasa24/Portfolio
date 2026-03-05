@@ -5,12 +5,15 @@ from bs4 import BeautifulSoup
 import jinja2
 import yaml
 import logging
+from PIL import Image
+from io import BytesIO
 
 GITHUB_TOKEN = os.environ['API_TOKEN']
 BRANCHES = ['v1', 'main', 'master'] # V1 is a bit random here but it is SCS_RPC2 requirement
 CS_DIR = Path(os.environ.get('CS_DIR', '../hugo/content/cs/projects'))
 EN_DIR = Path(os.environ.get('EN_DIR', '../hugo/content/en/projects'))
 STATIC_DIR = Path('../hugo/static/assets/img/projects')
+STATIC_ROOT_DIR = Path('../hugo/static')
 TEMPLATE_FILE = Path('../templates/repo_template.j2')
 
 HEADERS = {"Authorization": f"token {GITHUB_TOKEN}"}
@@ -121,6 +124,48 @@ def fetch_and_save_image(url, name):
     except Exception as e:
         logger.warning(f"Failed to fetch image for {name}: {e}")
 
+def fetch_and_generate_favicon():
+    logger.info("Fetching GitHub profile picture for favicon")
+    try:
+        # Fetch user info to get avatar URL
+        query = '''
+        {
+          viewer {
+            avatarUrl(size: 512)
+          }
+        }
+        '''
+        resp = requests.post("https://api.github.com/graphql", json={"query": query}, headers=HEADERS)
+        resp.raise_for_status()
+        avatar_url = resp.json()['data']['viewer']['avatarUrl']
+        logger.info(f"Found avatar URL: {avatar_url}")
+        
+        # Download the avatar image
+        logger.info("Downloading avatar image")
+        img_resp = requests.get(avatar_url, headers={"User-Agent": "Mozilla/5.0"})
+        img_resp.raise_for_status()
+        
+        # Convert to ICO format
+        logger.info("Converting image to favicon.ico")
+        img = Image.open(BytesIO(img_resp.content))
+        # Convert RGBA to RGB if needed (ICO format requirement)
+        if img.mode == 'RGBA':
+            # Create white background
+            background = Image.new('RGB', img.size, (255, 255, 255))
+            background.paste(img, mask=img.split()[3])  # Use alpha channel as mask
+            img = background
+        elif img.mode != 'RGB':
+            img = img.convert('RGB')
+        
+        # Resize to common favicon sizes and save as ICO
+        favicon_path = STATIC_ROOT_DIR / 'favicon.ico'
+        img.save(favicon_path, format='ICO', sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
+        logger.info(f"Successfully generated favicon at {favicon_path}")
+        
+    except Exception as e:
+        logger.error(f"Failed to generate favicon: {e}")
+        raise
+
 def generate_markdown(repo):
     name = repo['name']
     logger.info(f"Generating markdown for repository: {name}")
@@ -173,3 +218,7 @@ if __name__ == "__main__":
     for repo in repos:
         generate_markdown(repo)
     logger.info("Finished pinned repo content generation")
+    
+    logger.info("Generating favicon from GitHub profile picture")
+    fetch_and_generate_favicon()
+    logger.info("Build-time generation complete")

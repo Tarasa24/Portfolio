@@ -41,7 +41,7 @@ jobs:
       - name: Commit and push changes
         id: commit
         run: |
-          git add hugo/content/cs/projects hugo/content/en/projects hugo/static/assets/img/projects
+          git add hugo/content/cs/projects hugo/content/en/projects hugo/static/assets/img/projects hugo/static/favicon.ico
           if git diff-index --quiet HEAD; then
             echo "No changes to commit"
             echo "has_changes=false" >> $GITHUB_OUTPUT

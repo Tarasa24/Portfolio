@@ -54,7 +54,7 @@ jobs:
       - name: Create PR
         if: steps.commit.outputs.has_changes == 'true'
         run: |
-          gh pr create --base master --head update-pinned-repos --title "Update pinned repos markdown" --body "Automatic update of pinned repositories" --label automated
+          gh pr create --base master --head update-pinned-repos --title "Update pinned repos markdown - $(date +%Y-%m-%d)" --body "Automatic update of pinned repositories" --label automated
 
       - name: Merge PR
         if: steps.commit.outputs.has_changes == 'true'

@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: [closed]
+    branches:
+      - master
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -11,6 +15,7 @@ env:
 jobs:
   hugo_deploy:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5

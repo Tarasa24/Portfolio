@@ -59,4 +59,4 @@ jobs:
       - name: Merge PR
         if: steps.commit.outputs.has_changes == 'true'
         run: |
-          gh pr merge update-pinned-repos --merge --delete-branch
+          gh pr merge update-pinned-repos --squash --delete-branch

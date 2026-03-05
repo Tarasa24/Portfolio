@@ -27,6 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Configure Git and switch to update branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b update-pinned-repos || git checkout update-pinned-repos
+
       - name: Generate Markdown for pinned repos
         working-directory: scripts
         run: |
@@ -35,9 +41,6 @@ jobs:
       - name: Commit and push changes
         id: commit
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b update-pinned-repos || git checkout update-pinned-repos
           git add hugo/content/cs/projects hugo/content/en/projects hugo/static/assets/img/projects
           if git diff-index --quiet HEAD; then
             echo "No changes to commit"

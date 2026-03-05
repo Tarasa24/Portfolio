@@ -67,7 +67,18 @@
         {{ end }}
       {{ end }}
     {{ end }}
+
+    {{ if eq .RelPermalink "/" }}
+      {{ with resources.Get "js/terminal-effect.js" }}
+        {{ if hugo.IsDevelopment }}
+          <script src="{{ .RelPermalink }}" defer></script>
+        {{ else }}
+          {{ with . | minify | fingerprint }}
+            <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 </body>
-
 </html>

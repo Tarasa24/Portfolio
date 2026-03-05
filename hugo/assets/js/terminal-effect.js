@@ -22,20 +22,8 @@ class TerminalEffect {
     }
 
     setupEscapeHatches() {
-        // Stop on page visibility change (tab switch, minimize)
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.stop();
-            }
-        });
-
         // Stop before page unload
         window.addEventListener('beforeunload', () => {
-            this.stop();
-        });
-
-        // Stop on navigation (for SPAs)
-        window.addEventListener('pagehide', () => {
             this.stop();
         });
     }

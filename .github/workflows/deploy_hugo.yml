@@ -7,7 +7,6 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  DEVENV_VERSION: v1.10
 
 jobs:
   hugo_deploy:
@@ -16,22 +15,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install Nix
-        uses: cachix/install-nix-action@v31
-
-      - name: Enable Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
-
-      - name: Use cachix cache
-        uses: cachix/cachix-action@v16
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          name: devenv
+          hugo-version: latest
+          extended: true
 
-      - name: Install devenv
-        run: nix profile install nixpkgs#devenv
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - name: Build Hugo site in devenv
-        shell: devenv shell bash -- -e {0}
+      - name: Install Dart Sass
+        run: npm install -g sass-embedded
+
+      - name: Build Hugo site
         run: |
           hugo version
           sass --version

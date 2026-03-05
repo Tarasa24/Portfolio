@@ -50,6 +50,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update pinned repos markdown"
+          base: master
           branch: update-pinned-repos
           title: "Update pinned repos markdown"
           body: "Automatic update of pinned repositories"

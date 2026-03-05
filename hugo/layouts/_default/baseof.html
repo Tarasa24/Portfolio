@@ -68,7 +68,7 @@
       {{ end }}
     {{ end }}
 
-    {{ if eq .RelPermalink "/" }}
+    {{ if .IsHome }}
       {{ with resources.Get "js/terminal-effect.js" }}
         {{ if hugo.IsDevelopment }}
           <script src="{{ .RelPermalink }}" defer></script>

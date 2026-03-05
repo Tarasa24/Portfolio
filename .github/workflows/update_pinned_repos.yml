@@ -9,8 +9,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
   BASE_BRANCH: master
-  CS_DIR: cs
-  EN_DIR: en
 
 jobs:
   update_repos:
@@ -39,7 +37,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b update-pinned-repos || git checkout update-pinned-repos
-          git add hugo/static/assets/img/projects hugo/content/cs/projects hugo/content/en/projects
+          git add hugo/content/cs/projects hugo/content/en/projects hugo/static/assets/img/projects
           if git diff-index --quiet HEAD; then
             echo "No changes to commit"
             exit 0

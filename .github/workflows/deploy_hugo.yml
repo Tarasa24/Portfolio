@@ -14,21 +14,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+        uses: cachix/install-nix-action@v31
 
       - name: Enable Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
 
+      - name: Use cachix cache
+        uses: cachix/cachix-action@v16
+        with:
+          name: devenv
+
       - name: Install devenv
-        run: nix profile install github:cachix/devenv/${{ env.DEVENV_VERSION }}
+        run: nix profile install nixpkgs#devenv
+
+      - name: Build the devenv shell and run any pre-commit hooks
+        run: devenv test
 
       - name: Build Hugo site in devenv
+        shell: devenv shell bash -- -e {0}
         run: |
-          set -euo pipefail
-          eval "$(devenv print-dev-env)"
           hugo version
           sass --version
           cd hugo

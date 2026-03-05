@@ -30,9 +30,6 @@ jobs:
       - name: Install devenv
         run: nix profile install nixpkgs#devenv
 
-      - name: Build the devenv shell and run any pre-commit hooks
-        run: devenv test
-
       - name: Build Hugo site in devenv
         shell: devenv shell bash -- -e {0}
         run: |

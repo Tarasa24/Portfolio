@@ -1,7 +1,7 @@
 +++
 title = "PGPChatApp"
 description = "Chat Securely Through The Power Of PGP Encryption"
-stars = 4
+stars = 5
 downloads = 238
 forks = 2
 license = "GNU General Public License v3.0"

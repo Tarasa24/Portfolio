@@ -2,7 +2,7 @@
 title = "SCS_RPC2"
 description = "Discord Rich Presence plugin for ETS2 and ATS"
 stars = 22
-downloads = 1002
+downloads = 1005
 forks = 3
 license = "MIT License"
 homepage_url = ""

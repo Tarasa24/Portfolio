@@ -7,7 +7,7 @@ forks = 3
 license = "MIT License"
 homepage_url = ""
 repo_url = "https://github.com/Tarasa24/SCS_RPC2"
-lang = [
+langs = [
 ]
 +++
 

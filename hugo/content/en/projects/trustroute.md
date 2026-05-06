@@ -7,7 +7,7 @@ forks = 0
 license = ""
 homepage_url = "https://trustroute.tarasa24.dev/"
 repo_url = "https://github.com/Tarasa24/trustroute"
-lang = [
+langs = [
   { language = "Ruby", color = "#701516", ratio = 0.58 },
   { language = "SCSS", color = "#c6538c", ratio = 0.15 },
   { language = "Slim", color = "#2b2b2b", ratio = 0.11 }

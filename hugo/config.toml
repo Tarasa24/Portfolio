@@ -1,5 +1,5 @@
 baseURL = "https://tarasa24.dev/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Portfolio"
 
 defaultContentLanguage = "en"
@@ -11,13 +11,13 @@ defaultContentLanguage = "en"
 [languages]
   [languages.en]
     weight = 1
-    languageName = "English"
-    languageCode = "en"
+    label = "English"
+    locale = "en"
     contentDir = "content/en"
   [languages.cs]
     weight = 2
-    languageName = "Čeština"
-    languageCode = "cs"
+    label = "Čeština"
+    locale = "cs"
     contentDir = "content/cs"
 
 [markup]

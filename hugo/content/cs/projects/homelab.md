@@ -7,7 +7,7 @@ forks = 0
 license = ""
 homepage_url = ""
 repo_url = "https://github.com/Tarasa24/homelab"
-lang = [
+langs = [
   { language = "HCL", color = "#844FBA", ratio = 0.79 },
   { language = "Jinja", color = "#a52a22", ratio = 0.16 },
   { language = "Shell", color = "#89e051", ratio = 0.04 }

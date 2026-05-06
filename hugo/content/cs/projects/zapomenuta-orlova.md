@@ -7,7 +7,7 @@ forks = 1
 license = ""
 homepage_url = "https://zapomenutaorlova.muor.cz"
 repo_url = "https://github.com/Tarasa24/zapomenuta-orlova"
-lang = [
+langs = [
   { language = "Vue", color = "#41b883", ratio = 0.83 },
   { language = "JavaScript", color = "#f1e05a", ratio = 0.15 },
   { language = "HTML", color = "#e34c26", ratio = 0.01 }

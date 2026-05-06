@@ -202,7 +202,7 @@ def generate_markdown(repo):
             "license": license_name,
             "homepage_url": homepage,
             "repo_url": f"https://github.com/Tarasa24/{name}",
-            "lang": lang_list
+            "langs": lang_list
         }
         folder.mkdir(exist_ok=True)
         md_content = template.render(frontmatter=frontmatter, readme=readme_content)

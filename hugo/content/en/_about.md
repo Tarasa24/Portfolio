@@ -1,7 +1,10 @@
 I am a results-focused problem solver who delivers clear, usable solutions on schedule. I prioritize pragmatic design, reliable code, and measurable impact - not buzzwords. I communicate plainly, take ownership of outcomes, and push projects from concept to production with attention to quality and deadlines.
 
 ### Professional Experience
-#### Junior Backend Developer at [Juicymo](https://juicymo.cz) (2022 - Present)
+#### Medior Backend Developer at [Juicymo](https://juicymo.cz) (2026 - Present)
+- TBA
+
+#### Junior Backend Developer at [Juicymo](https://juicymo.cz) (2022 - 2026)
 - Build and maintain core backend services using **Ruby on Rails** with **relational**, **time-series** as well as **document-oriented DBs**, designing efficient database schemas and optimizing queries for high performance.
 - Develop and maintain **RESTful APIs** and **Protobuf-based** communication for internal services, ensuring reliable data exchange across the platform.
 - Take partial ownership of a **Golang multiplatform** label-printing client, contributing to cross-platform feature development and maintenance.

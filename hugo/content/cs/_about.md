@@ -1,7 +1,10 @@
 Jsem na výsledky orientovaný řešitel problémů, který dodává jasná a použitelná řešení v dohodnutém termínu. Upřednostňuji pragmatický návrh, spolehlivý kód a měřitelný dopad - ne buzzwordy. Komunikuji přímo, přebírám odpovědnost za výsledky a posouvám projekty od konceptu až do produkce s důrazem na kvalitu a dodržení termínů.
 
 ### Profesní zkušenosti
-#### Junior Backend Developer ve společnosti [Juicymo](https://juicymo.cz) (2022 - současnost)
+#### Medior Backend Developer ve společnosti [Juicymo](https://juicymo.cz) (2026 - současnost)
+- TBA
+
+#### Junior Backend Developer ve společnosti [Juicymo](https://juicymo.cz) (2022 - 2026)
 - Vytvářím a udržuji klíčové backendové služby v **Ruby on Rails** s využitím **relačních**, **time-series** i **dokumentově orientovaných databází**, navrhuji efektivní databázová schémata a optimalizuji dotazy pro vysoký výkon.
 - Vyvíjím a udržuji **RESTful API** a komunikaci založenou na **Protobuf** pro interní služby, čímž zajišťuji spolehlivou výměnu dat napříč platformou.
 - Spolupodílím se na vývoji a údržbě **multiplatformního klienta pro tisk štítků v Golangu**, přispívám k vývoji funkcí napříč platformami.

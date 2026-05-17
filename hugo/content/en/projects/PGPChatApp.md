@@ -1,8 +1,8 @@
 +++
 title = "PGPChatApp"
 description = "Chat Securely Through The Power Of PGP Encryption"
-stars = 5
-downloads = 247
+stars = 6
+downloads = 248
 forks = 2
 license = "GNU General Public License v3.0"
 homepage_url = "https://tarasa24.github.io/PGPChatApp/"

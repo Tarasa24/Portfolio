@@ -8,7 +8,7 @@ license = ""
 homepage_url = ""
 repo_url = "https://github.com/Tarasa24/homelab"
 langs = [
-  { language = "HCL", color = "#844FBA", ratio = 0.56 },
+  { language = "HCL", color = "#844FBA", ratio = 0.57 },
   { language = "Jinja", color = "#a52a22", ratio = 0.31 },
   { language = "Shell", color = "#89e051", ratio = 0.08 }
 ]
